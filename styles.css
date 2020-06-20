@@ -1,0 +1,43 @@
+.container{
+	background: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+table{
+	margin-top: 5%;
+}
+table td{
+	width: 100px;
+	height: 100px;
+}
+.cell{
+	background: grey;
+}
+.cell:hover{
+	background: #a9a9a9;
+}
+#cell_4, 
+#cell_1, 
+#cell_7{
+	border-right: 5px solid white;
+	border-left: 5px solid white;
+}
+#cell_3, 
+#cell_4, 
+#cell_5{
+	border-bottom: 5px solid white;
+	border-top: 5px solid white;
+}
+button{
+	border: none;
+	outline: none;
+	background: #a9a9a9;
+	margin-top: 30px;
+	padding: 15px 30px;
+	font-size: 20px;
+}
+button:hover{
+	background: grey;
+}
