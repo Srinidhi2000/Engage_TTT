@@ -1,7 +1,7 @@
 var board;
 var ai = 'x';
 const user = 'o';
-var win_pattern = [[0,3,6],	[1,4,7], [2,5,8], [0,1,2], [3,4,5], [6,7,8], [0,4,8], [2,4,6]];
+var win_pattern = [[0,3,6], [1,4,7], [2,5,8], [0,1,2], [3,4,5], [6,7,8], [0,4,8], [2,4,6]];
 
 var squares=document.querySelectorAll(".cell");
 
@@ -22,7 +22,7 @@ function clickOn(cell)
 }
 function restart(){
 	output(" ");
-	board = [0,1,2,3,4,5,6,7,8,9];
+	board = [0,1,2,3,4,5,6,7,8];
 	for (var i=0; i<squares.length; i++)
 	{
 		squares[i].innerText='';
