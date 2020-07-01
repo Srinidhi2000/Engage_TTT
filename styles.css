@@ -18,15 +18,15 @@ table td{
 .cell:hover{
 	background: #a9a9a9;
 }
-#cell_4, 
-#cell_1, 
-#cell_7{
+#4, 
+#1, 
+#7{
 	border-right: 5px solid white;
 	border-left: 5px solid white;
 }
-#cell_3, 
-#cell_4, 
-#cell_5{
+#3, 
+#4, 
+#5{
 	border-bottom: 5px solid white;
 	border-top: 5px solid white;
 }
