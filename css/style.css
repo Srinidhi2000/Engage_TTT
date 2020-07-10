@@ -1,3 +1,7 @@
+body{
+
+height:100%
+}
 td{
 border:2px solid #333;
 height:100px;
@@ -13,7 +17,7 @@ border-collapse:collapse;
 position:absolute;
 left:50%;
 margin-left:-155px;
-top:50px;
+top:200px;
 }
 
 table tr:first-child td{
@@ -48,7 +52,9 @@ border-radius:5px;
 color:black;
 font-size:2em;
 }
-
+.row{
+display:none;
+}
 .row button{
 background-color:white;
 }
@@ -56,3 +62,41 @@ background-color:white;
 #levelOne{
 background-color:red;
 }
+
+.chooseGame button{
+background-color:white;
+}
+
+.options{
+display:none;
+}
+#TTT_Board{
+display:none;
+}
+
+.clock_container{
+box-shadow:0 1px 4px rgba(0,0,0,0.5);
+padding:15px;
+border-radius:5px;
+display:none;
+background-color:orange;
+}
+
+.screen{
+color:black;
+border-radius:5px;
+}
+.screen span{
+display:inline-block;
+text-align:center;
+}
+
+input, .nameInput button{
+padding:7px;
+height:40px;
+}
+
+.nameInput{
+display:none;
+}
+
