@@ -9,7 +9,7 @@ Tic Tac Toe
 <link rel="stylesheet" href="./css/style.css">
 <body>
 <script src="./js/script.js"></script>
-<table>
+<table id="TTT_Board">
 <tr>
 <td class="cell" id="0"></td>
 <td class="cell" id="1"></td>
@@ -28,13 +28,34 @@ Tic Tac Toe
 </table>
 <div class="endgame">
 <div class="text"></div>
-<button onClick="startGame()">Replay</button>
+<button onClick="Replay()">Replay</button>
+</div>
+<div class="chooseGame">
+<div class="chooseType"><button id="againstPlayer">Dual Player Mode</button></div>
+<div class="chooseType"><button id="againstAI">Play Against Computer</button></div>
+<div class="chooseType"><button id="compete">Enter Compete Mode</button></div>
 </div>
 <div class="row">
 <div class="column"><button id="levelOne" >Level 1</button></div>
 <div class="column"><button id="levelTwo" >Level 2</button></div>
 <div class="column"><button id="levelThree" >Level 3</button></div>
 <div class="column"><button id="levelFour" >Level 4</button></div>
+</div>
+<div class="options">
+<div class="playerOptions"><button id="restartGame">Restart Game</button></div>
+<div class="playerOptions"><button id="mainMenu">Main Menu</button></div>
+
+</div>
+<fieldset class="nameInput">
+<legend>Who's playing??</legend>
+<input id="Player1Name" type="text" placeholder="Player1 Name" required>
+<input id="Player2Name" type="text" placeholder="Player2 Name" required>
+<button type="button" id="submitName">Play!!</button>
+</fieldset>
+<div class="clock_container">
+<h1 class="screen">
+<span id="minutes">00</span>:<span id="seconds">00</span>:<span id="millis">00</span>
+</h1>
 </div>
 </body>
 </head>
