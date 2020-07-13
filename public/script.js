@@ -223,6 +223,9 @@ function restartGame(){
     $('#levelOne').css({
         'background-color':'black'
     });
+    $('#hint').css({
+        display:'none'
+    });
     $(".cell").each(function(i){
         $(".cell")[i].removeEventListener('click',cellClick,false);});
     checkNameEntered();
@@ -345,7 +348,7 @@ function gameOver(gameWon){
         $(".cell")[i].removeEventListener('click',cellClick,false);});
         var currWin;
         if(isTwoMode){
-            currWin=gameWon.player==player?Player1Name+"Wins":Player2Name+" Wins";
+            currWin=gameWon.player==player?Player1Name+" Wins":Player2Name+" Wins";
         }else{
             currWin=gameWon.player==player?"You win":"You Lost";  
             whoWon=gameWon.player==player?"Player":"Computer";       
@@ -541,7 +544,9 @@ function displayWinner(winner,gameWon){
     else{
         $('.endgame .text').html(winner);   
     }
-   
+    $('#hint').css({
+        display:'none'
+    });
     if(gameType=="compete"){
         $('.endgame button').css({
             display:'none'
@@ -549,7 +554,7 @@ function displayWinner(winner,gameWon){
         $('.row').css({
             display:'none'
         });   
-      
+     
     }
     }
 
