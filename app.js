@@ -30,18 +30,7 @@ db.getDB().collection(collection).find({Name:username}).toArray((err,documents)=
     }
 });
 });
-    // script.get('/getleaderBoard',(req,res)=>{
-    //     db.getDB().collection(collection).find({}).toArray((err,documents)=>{
-    //         if(err){
-    //             console.log(err);
-    //         }else{
-    //             res.json(documents);
-    //             console.log(documents);
-    //         }
-    //     });
-    //     });
-
-
+    
 script.put('/:id',(req,res)=>{
 const userID=req.params.id;
 const userInput=req.body;
