@@ -1,0 +1,407 @@
+/* body{
+
+height:100%
+}
+td{
+border:2px solid #333;
+height:100px;
+width:100px;
+text-align:center;
+vertical-align:middle;
+font-size:70px;
+cursor:pointer;
+}
+
+table{
+border-collapse:collapse;
+position:absolute;
+left:50%;
+margin-left:-155px;
+top:200px;
+}
+
+table tr:first-child td{
+border-top:0;
+}
+
+table tr:last-child td{
+border-bottom:0;
+}
+
+table tr td:first-child{
+border-left:0;
+}
+
+table tr td:last-child{
+border-right:0;
+}
+
+.endgame{
+display:none;
+width:200px;
+top:120px;
+background-color:#ffffff;
+opacity:0.8;
+position:absolute;
+left:50%;
+margin-left:-100px;
+padding-top:50px;
+padding-bottom:50px;
+text-align:center;
+border-radius:5px;
+color:black;
+font-size:2em;
+}
+.row{
+display:none;
+}
+.row button{
+background-color:white;
+}
+
+#levelOne{
+background-color:red;
+}
+
+.chooseGame button{
+background-color:white;
+}
+
+.options{
+display:none;
+}
+#TTT_Board{
+display:none;
+}
+
+.clock_container{
+box-shadow:0 1px 4px rgba(0,0,0,0.5);
+padding:15px;
+border-radius:5px;
+display:none;
+background-color:orange;
+}
+
+.screen{
+color:black;
+border-radius:5px;
+}
+.screen span{
+display:inline-block;
+text-align:center;
+}
+
+input, .nameInput button{
+padding:7px;
+height:40px;
+}
+
+.nameInput{
+display:none;
+}
+ */
+ /*html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+
+  }*/
+
+
+
+
+html {
+    box-sizing: border-box;
+  
+  }
+  body{
+      background-color: #eaeaea;
+      position: relative;
+      /* &:before{
+          position: absolute;
+      } */
+  }
+  *{
+    box-sizing: border-box;
+    border-radius: 10px;
+    /*box-shadow:0 1px 4px rgba(0,0,0,0.5);*/
+  }
+  body, html{
+  height:100%;
+  }
+  #container{
+      width: 100%;
+      max-width: 640px;
+        min-width: 360px;
+        margin: 50px auto;
+      padding: 20px;
+      background-color: black;
+      box-shadow: 0 1px 10px rgba(0,0,0,50);
+  }
+  
+  @media (max-width: 1400px) {
+    #container {
+      max-width: 500px;
+      margin: 20px auto;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    #container {
+      margin-top: 0px;
+    }
+  }
+  
+  .giph{
+      text-align: center;
+  
+  }
+  img {
+  
+      margin-top: 5%; 
+      width: 400px;
+      height: 400px;
+  }
+  .cell{
+      height: 33.33%;
+      width: 33.33%;
+  }
+  
+  #TTT_Board{
+  display:none;
+  }
+  
+  #board{
+      position: relative;
+      margin: auto 25% auto;
+  
+      text-align: center;
+  
+  }
+  
+  
+  
+  table{
+  border-collapse:collapse;
+  margin: auto;
+  
+  }
+  td{
+  border:5px solid black;
+  height:100px;
+  width:100px;
+  text-align:center;
+  vertical-align:middle;
+  font-size:50px;
+  cursor:pointer;
+  }
+  td:hover{
+      background-color: grey;
+  }
+  
+  
+  table tr:first-child td{
+  border-top:0;
+  }
+  
+  table tr:last-child td{
+  border-bottom:0;
+  }
+  
+  table tr td:first-child{
+  border-left:0;
+  }
+  
+  table tr td:last-child{
+  border-right:0;
+  }
+  .card_container {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      border: 5px solid black;
+      -webkit-perspective: 800px;
+      -moz-perspective: 800px;
+      -o-perspective: 800px;
+      perspective: 800px;
+  }
+  .card {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      -webkit-transition: -webkit-transform 1s;
+      -moz-transition: -moz-transform 1s;
+      -o-transition: -o-transform 1s;
+      transition: transform 1s;
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      -o-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      -webkit-transform-origin: 50% 50%;
+  }
+  .card div {
+      display: block;
+      height: 100%;
+      width: 100%;
+      line-height: 100px;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      font-size: 70px;
+      position: absolute;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -o-backface-visibility: hidden;
+      backface-visibility: hidden;
+  }
+  
+  
+  .card .front {
+    background: white;
+  }
+  .card .back {
+      -webkit-transform: rotateY( 180deg );
+      -moz-transform: rotateY( 180deg );
+      -o-transform: rotateY( 180deg );
+      transform: rotateY( 180deg );
+  }
+  .card.flipped {
+      -webkit-transform: rotateY( 180deg );
+      -moz-transform: rotateY( 180deg );
+      -o-transform: rotateY( 180deg );
+      transform: rotateY( 180deg );
+  }
+  
+  #side{
+      text-align: center;
+  }
+  .endgame{
+  display:none;
+  width:200px;
+  background-color:white;
+  opacity:0.8;
+  
+  
+  position:absolute;
+  /*left:50%;*/
+  margin: auto 20% auto;
+  padding-top:50px;
+  padding-bottom:50px;
+  text-align:center;
+  border-radius:5px;
+  color:black;
+  font-size:2em;
+  }
+  .row1{
+  display:none;
+  width: 100%;
+  text-align: center;
+  }
+  .row1 {
+  background-color:transparent;
+  }
+  .row1 input:hover{
+  background-color: #5868ad;
+  }
+  #levelOne{
+  background-color:red;
+  }
+  .chooseGame{
+      overflow: auto;
+      text-align: center;
+  
+  }
+  .chooseGame button{
+  background-color:#0c2c5e ;
+  margin: 10px 20px;
+  width: 200px;
+  color: #bac8de;
+  font-size: 15px;
+  vertical-align: center;
+  border: none;
+      margin: auto;
+      padding: 10px;
+      cursor: pointer;
+  
+  }
+  
+  
+  .options{
+  display:none;
+  margin: auto;}
+  
+  .options button{
+  background-color:#3b134d ;
+  color: #e2dae6;
+  font-size: 15px;
+  align-content: center;
+  border: none;
+  }
+  .options button:hover{
+      background-color: #724287;
+  }
+  
+  .clock_container{
+  /*box-shadow:0 1px 4px rgba(0,0,0,0.5);
+  padding:15px;
+  border-radius:5px;*/
+  display:none;/*
+  background-color:orange;*/
+  }
+  
+  .screen{
+      text-align: right;
+  color:white;
+  font-size: 15px;
+  }
+  .screen span{
+  display:inline-block;
+  text-align:center;
+  }
+  span{
+      text-align: right;
+  }
+  
+  .nameInput{
+  display:none;
+  text-align: center;
+  }
+  
+  h1{
+      color: white;
+  }
+  .nameInput input{
+      border: none;
+      border-radius: 0%;
+      padding: 10px;
+      font-size: 15px;
+      margin: 10px;
+  }
+  .nameInput button{
+  /*padding:7px;
+  height:40px;*/
+  background-color:#3b134d ;
+  margin: 10px 20px;
+  color: #e2dae6;
+  font-size: 15px;
+  align-content: center;
+  
+  border: none;
+      margin: auto;
+      padding: 10px;
+      cursor: pointer;
+  
+  /*margin: 10px 20px;
+  width: 200px;
+  color: #bac8de;
+  font-size: 15px;
+  vertical-align: center;*/
+  }
+  .nameInput button:hover{
+      background-color: #724287;
+  }
+  
+  
+  
+  
