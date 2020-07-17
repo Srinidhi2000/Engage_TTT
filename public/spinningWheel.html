@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta charset = "UTF-8">
+<title>My first page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<style>
+    *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        outline: none;
+    }
+    body{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        height: 100vh;
+overflow: hidden;
+background-image: url('/bg1.png');
+
+background-size: cover;
+    }
+    .mainCircle{
+        position: relative;
+        display: block;
+        width:500px;
+        height: 500px;
+    }
+    .mainCircle:after{
+        position: absolute;
+        content:'';
+        width:32px;
+        height:32px;
+        background:url('/arrow1.png') no-repeat;
+        background-size: 32px;
+        right:-30px;
+        top:50%;
+        transform:translate(-50%);
+
+    }
+    .box{
+        width:100%;
+        height:100%;
+        position:relative;
+        border-radius:50%;
+        border:10px solid #FFF;
+        overflow: hidden;
+        transition:all ease 5s;
+    }
+    span{
+        width: 50%;
+        height: 50%;
+        display: inline-block;
+        position: absolute;
+    }
+    .span1{
+        clip-path: polygon(0 92%, 100% 50%,0 8%);
+        background-color: #C51162;
+        top:120px;
+        left:0;
+    }
+    .span2{
+        clip-path: polygon(100% 92%, 0 50%,100% 8%);
+        background-color: #FF9100;
+        top:120px;
+        right:0;
+    }
+    .span3{
+        clip-path: polygon(50% 0%, 8% 100%,92% 100%);
+        background-color: #F50057;
+        bottom:0px;
+        left:120px;
+    }
+    .span4{
+        clip-path: polygon(50% 100%, 92% 0%,8% 0);
+        background-color: #880E4F;
+        top:0px;
+        left:120px;
+    }
+    .circle2{
+        width:100%;
+        height:100%;
+        transform:rotate(-135deg);
+    }
+    span b{
+        width: 65px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: #FFF;
+        position: absolute;
+         top:50%;
+         left:50%;
+         transform: translate(-50%,-50%);
+         box-shadow:inset 0 3px 3px 0 #717171;
+             }
+             .spin{
+                 position:absolute;
+                 top:50%;
+                 left:50%;
+                 transform:translate(-50%, -50%);
+                 width:75px;
+                 height: 75px;
+                 border-radius: 50%;
+                 border: 4px solid #fff;
+                 background-color: #ff5722;
+                 color:#fff;
+                 box-shadow: 0 5px 20px #000;
+                 font-weight: bold;
+                 font-size: 22px;
+                 cursor:pointer;
+             }
+             .spin:active{
+                  width:70px;
+                  height:70px;
+                  font-size:20px;
+             }
+             .mainCircle.animate:after{
+              animation: animateArrow 0.7s ease infinite;   
+             }
+             @keyframes animateArrow {
+                50%{
+				right: -40px;
+                }
+             }
+             #status{
+                font-size: 2em;
+                color: white;
+                 display: block;
+position: absolute;
+top: 650px;
+             }
+             #goBack{
+                color: whitesmoke;
+                 display: none;
+                position: absolute;
+                top: 700px;
+              border: whitesmoke;
+             }
+             #goBack:hover{
+background-color: #880E4F;
+             }
+             .spin:focus {
+  outline: none;
+  box-shadow: none;
+}
+.spin:active:focus {
+  outline: none;
+  box-shadow: none;
+}
+#goBack:focus {
+  outline: none;
+  box-shadow: none;
+}
+</style>
+</head>
+<body>
+    <script src="/spin.js"></script>
+  <div id="Mainmenu"></div> 
+ <div id='mainCircle' class="mainCircle">
+     <div id="box" class="box">
+         <div class="circle1">
+<span id="50" class="span1"><b>50</b></span>
+<span id="150" class="span2"><b>150</b></span>
+<span id="250" class="span3"><b>250</b></span>
+<span id="350" class="span4"><b>350</b></span>
+         </div>
+         <div class="circle2">
+            <span id="10" class="span1"><b>10</b></span>
+            <span id="0" class="span2"><b>0</b></span>
+            <span id="75" class="span3"><b>75</b></span>
+            <span id="300" class="span4"><b>300</b></span>
+         </div> 
+     </div>
+     <button class="spin" onclick="handleSpin()">SPIN</button>
+ </div>
+
+<div id="status"></div>
+<button id="goBack" type="button" class="btn btn-outline-primary">Back to Main Menu</button>  
+</body>
+</html>
