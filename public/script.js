@@ -1,4 +1,3 @@
-
 var boardList;
 var levelSelected='levelOne';
 var gameType;
@@ -8,6 +7,7 @@ var currPlayer;
 var isTwoMode;
 var whoWon;
 var isReplay;
+var isSpin=true;
 var isnameEntered=false;
 const player2="X";
 const computer="X";
@@ -19,6 +19,7 @@ var Player2Name;
 var hintNum=0;
 var hintA=0;
 var hintB=0;
+var pointsScored;
 var displayBestTime;
 const toWinList=[
 [0,1,2],
@@ -30,8 +31,20 @@ const toWinList=[
 [0,4,8],
 [6,4,2]
 ];
-
 $(function(){
+    $('#spinButton').on('click',function(){
+        $("#container").css({
+            display:'none'
+        });
+      //  $("#spinWheel").load("spinningWheel.html"); 
+      $('#SpinCircle').css({
+          display:'flex'
+      })
+    });
+   
+  });
+$(function(){
+
     // Validation for the name fields
     $('#submitName').on('click',function(){
         if($('#Player1Name').val()!=""){
@@ -201,6 +214,7 @@ function hideMainMenuOptions(){
 function Replay(){
     resetTimer();
     isReplay=true;
+    //isSpin=true;
        checkNameEntered();
    }
 
@@ -216,6 +230,7 @@ function restartGame(){
     Player2Name=null;
     isnameEntered=false;
     isReplay=false;
+    //isSpin=true;
     levelSelected='levelOne';
     $(".row1 button").css({
         'background-color':'white'
@@ -234,6 +249,7 @@ function restartGame(){
 //To check if the player has enterd the name before starting the game
 function checkNameEntered(){
     startGame();
+    
     if(isnameEntered){
         beginPlaying();
     }
@@ -242,12 +258,18 @@ function checkNameEntered(){
 //Re-initialise everything
 function startGame(){
 displayBestTime=null;
+isSpin=true;
+pointsScored=0;
     $(".endgame").css({
         display:'none',
+    });
+    $('#spinButton').css({
+        display:'none'
     });
     isCompete=false;
     if(gameType=="compete"){
         isCompete=true;
+       
         $('#restartGame').css({
             display:'none',
         });
@@ -534,10 +556,13 @@ function displayWinner(winner,gameWon){
     $('.endgame').css({
         display:'block'
     });
+  
     $('.endgame button').css({
         display:'inline-block'
     });
-    
+    $('#spinButton').css({
+        display:'none'
+    });  
     if(displayBestTime!=null){
         $('.endgame .text').html(winner+ "<br> Best Time:"+displayBestTime);
     }
@@ -548,12 +573,12 @@ function displayWinner(winner,gameWon){
         display:'none'
     });
     if(gameType=="compete"){
-        $('.endgame button').css({
-            display:'none'
-        });
-        $('.row').css({
-            display:'none'
-        });   
+        console.log("isspin"+isSpin);
+        console.log("winner"+winner);
+        if(isSpin&&winner=="You win"){
+            $('#spinButton').css({display:'block'});
+        }
+          
      
     }
     }
@@ -687,3 +712,73 @@ $('#minutes').html(min);
 $('#millis').html(milli);
 }
 
+//SpinWheel Code
+var cnt=false;
+var absDeg;
+function handleSpin(){
+if(!cnt){var x=1024;
+    var y=9999;
+    var deg=Math.floor(Math.random()*(x-y))+y;
+    console.log(deg);
+    cnt=true;
+document.getElementById('box').style.transform="rotate("+deg+"deg)";
+var element=document.getElementById('mainCircle');
+element.classList.remove('animate');
+setTimeout(function(){
+element.classList.add('animate');
+},5000);
+ absDeg=deg-(Math.floor(deg/360)*360);
+var spinTile;
+if((absDeg>=0&&absDeg<22.5)||(absDeg>=337.5&&absDeg<=360)){
+spinTile="150";
+}else if(absDeg>=292.5){
+spinTile="10";
+}else if(absDeg>=247.5){
+spinTile="250";
+}else if(absDeg>=202.5){
+spinTile="300";
+}else if(absDeg>=157.5){
+    spinTile="50";
+}else if(absDeg>=112.5){
+        spinTile="0";
+}else if(absDeg>=67.5){
+    spinTile="350";
+}else if(absDeg>=22.5){
+    spinTile="75";
+}
+pointsScored=spinTile;
+console.log(pointsScored);
+setTimeout(function(){
+    document.getElementById('goBack').style.display="block";
+    document.getElementById('status').style.display="block";
+    if(spinTile=="0"){
+        document.getElementById('status').innerHTML="Oops!! Better Luck Next Time";
+    }else{
+        document.getElementById('status').innerHTML="Yayy!! You've earned "+spinTile+" points";
+    }
+},5000);
+}
+}
+$(function(){
+    $('#goBack').on('click',function(){
+        
+        absDeg=absDeg*-1;
+        console.log("deg="+absDeg);
+       
+        $('#container').css({
+           display:'block'
+       });
+       $('#SpinCircle').css({
+           display:'none'
+       });
+    $('#spinButton').css({display:'none'});
+       var deg=Math.floor(Math.random()*(360-0))+0;
+       document.getElementById('box').style.transform="rotate("+deg+"deg)";
+       var element=document.getElementById('mainCircle');
+        element.classList.remove('animate');
+        isSpin=false;
+       document.getElementById('goBack').style.display="none";
+       document.getElementById('status').style.display="none";
+       cnt=false;
+    });
+  });
