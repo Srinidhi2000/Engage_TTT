@@ -11,16 +11,26 @@ const connect=(cb)=>{
     if(state.db){
         cb();
     }else{
+        
       MongoClient.connect(url,mongoOptions,(err,client)=>{
           if(err){
               cb(err);
           }else{
-            state.db=client.db("ClusterTTT");
+           // state.db=client.db("ClusterTTT");
             cb();          
           }
       });
        }
 }
+
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://srinidhi:<password>@clusterttt.lkw7g.mongodb.net/<dbname>?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
 
 const getPrimaryKey=(id)=>{
 return ObjectID(id);
