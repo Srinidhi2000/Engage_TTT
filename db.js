@@ -1,7 +1,7 @@
 const MongoClient=require("mongodb").MongoClient;
 const ObjectID=require('mongodb').ObjectID;
 const dbname="leaderBoard_mongodb";
-const url="mongodb://localhost:27017/test";
+const url=process.env.MONGODB_URI||"mongodb://localhost:27017/test";
 const mongoOptions={useNewUrlParser:true};
 const state={
     db:null
@@ -15,7 +15,7 @@ const connect=(cb)=>{
           if(err){
               cb(err);
           }else{
-            state.db=client.db(dbname);
+            state.db=client.db("ClusterTTT");
             cb();          
           }
       });
