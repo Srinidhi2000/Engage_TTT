@@ -119,25 +119,39 @@ Tic Tac Toe
 <div><button id="spinButton">Try SpinWheel</button></div>
 <button onClick="Replay()">Replay</button>
 </div>
+<div class="dropdown">
+  <button onclick="drop()" class="dropbtn">Challenges</button>
+  <div id="myDropdown" class="dropdown-content">
+    <button class="boardsize s4x4" onclick="boardsize4()">4x4</button>
+    <button class="boardsize s5x5" onclick="boardsize5()">5x5</button>
+    <button class="boardsize s6x6" onclick="boardsize6()">6x6</button>
+    <button class="boardsize s7x7" onclick="boardsize7()">7x7</button>
+    <button class="boardsize s8x8" onclick="boardsize8()">8x8</button>
+    <button class="boardsize s9x9" onclick="boardsize9()">9x9</button>
+    <button class="boardsize s10x10" onclick="boardsize10()">10x10</button>
+
+  </div>
+</div>
+<span id="countdown"></span><span id="ss"> second</span><span id="plural">s</span>
 <button class="leaderBoard" onClick="displayLeaderBoard()">Leaderboard</button>
 <div class="center">
 	<div class="top3">
 		<div class="two item">
-			<div class="pos 2">
+			<div class="pos_2">
 			<div class="name">
         </div>
         <div class="point"></div>
         </div>
         </div>
       <div class="one item">
-          <div class="pos 1">
+          <div class="pos_1">
           <div class="name">
             </div>
             <div class="point"></div>
             </div>
             </div>  
             <div class="two item">
-              <div class="pos 3">
+              <div class="pos_3">
               <div class="name">
                 </div>
                 <div class="point"></div>
