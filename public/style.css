@@ -81,6 +81,7 @@ html {
   border:5px solid black;
   height:100px;
   width:100px;
+  color:brown;
   text-align:center;
   vertical-align:middle;
   font-size:50px;
@@ -267,6 +268,12 @@ html {
       padding: 10px;
       font-size: 15px;
       margin: 10px;
+  }
+  i{
+      color: white;
+  }
+  .nameInput input:disabled{
+      color:white;
   }
   .nameInput button{
   /*padding:7px;
