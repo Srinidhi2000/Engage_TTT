@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>
+Tic Tac Toe
+</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+  <script src="/script.js"></script>
+<div id="spinWheel"></div> 
+  <div id="container">
+
+<div class="chooseGame">
+<div class="chooseType"><button id="againstPlayer">Dual Player Mode</button></div>
+<div class="chooseType"><button id="compete">Enter Compete Mode</button></div>
+
+<!-- <img src="https://giphy.com/gifs/i9j7a4aUidyhy/html5"> -->
+<div class="giph">
+<img src="https://media.giphy.com/media/i9j7a4aUidyhy/giphy.gif">
+</div>
+</div>
+
+<div id="side">
+
+
+<fieldset class="nameInput">
+<h1>Who's playing??</h1>
+<input id="Player1Name" type="text" placeholder="Player1 Name" required>
+<input id="Player2Name" type="text" placeholder="Player2 Name" required>
+<span >
+<button type="button" id="submitName">Play!!</button>
+</span>
+</fieldset>
+
+
+
+<div class="row1">
+<div class="column">
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-info active">
+    <input type="radio" name="options" id="levelOne" checked> LEVEL 1
+  </label>
+  <label class="btn btn-info">
+    <input type="radio" name="options" id="levelTwo"> LEVEL 2
+  </label>
+  <label class="btn btn-info">
+    <input type="radio" name="options" id="levelThree"> LEVEL 3
+  </label>
+  <label class="btn btn-info">
+    <input type="radio" name="options" id="levelFour"> LEVEL 4
+  </label><!-- 
+  <div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-secondary">1</button>
+  <button type="button" class="btn btn-secondary">2</button>
+  <button type="button" class="btn btn-secondary">3</button>
+  <button type="button" class="btn btn-secondary">4</button> -->
+</div>
+</div>
+</div>
+<!-- <div class="row1">
+<div class="column"><button id="levelOne" >Level 1</button></div>
+<div class="column"><button id="levelTwo" >Level 2</button></div>
+<div class="column"><button id="levelThree" >Level 3</button></div>
+<div class="column"><button id="levelFour" >Level 4</button></div>
+</div> -->
+<div class="options">
+<div class="playerOptions"><button id="restartGame">Restart Game</button></div>
+<div class="playerOptions"><button id="hint">Hint</button></div>
+<div class="restarting">
+<div class="playerOptions"><button id="mainMenu">Main Menu</button></div>
+</div>
+</div>
+
+
+
+<div class="clock_container">
+<h1 class="screen">
+<span id="minutes">00</span>:<span id="seconds">00</span>:<span id="millis">00</span>
+</h1>
+</div>
+</div>
+
+
+
+
+<div id="board">
+<table id="TTT_Board">
+<tr>
+
+<td class="cell" id="0"><section class="card_ontainer">
+  <div class="card" onclick="flip()">
+    <div class="front"></div>
+    <div class="back"></div>
+  </div>
+</section></td>
+<td class="cell" id="1"></td>
+<td class="cell" id="2"></td>
+</tr>
+<tr>
+<td class="cell" id="3"></td>
+<td class="cell" id="4"></td>
+<td class="cell" id="5"></td>
+</tr>
+<tr>
+<td class="cell" id="6"></td>
+<td class="cell" id="7"></td>
+<td class="cell" id="8"></td>
+</tr>
+</table>
+</div>
+<div class="endgame">
+<div class="text"></div>
+<div><button id="spinButton">Try SpinWheel</button></div>
+<button onClick="Replay()">Replay</button>
+</div>
+<button class="leaderBoard" onClick="displayLeaderBoard()">Leaderboard</button>
+<div class="center">
+	<div class="top3">
+		<div class="two item">
+			<div class="pos 2">
+			<div class="name">
+        </div>
+        <div class="point"></div>
+        </div>
+        </div>
+      <div class="one item">
+          <div class="pos 1">
+          <div class="name">
+            </div>
+            <div class="point"></div>
+            </div>
+            </div>  
+            <div class="two item">
+              <div class="pos 3">
+              <div class="name">
+                </div>
+                <div class="point"></div>
+                </div>
+                </div>
+                </div>
+		
+  <div class="list">
+		<div class="item">
+			<div class="pos1">
+			<div class="name">
+        </div>
+        <div class="score"></div>
+        </div>
+        </div>  
+        <div class="item">
+          <div class="pos2">
+          <div class="name">
+            </div>
+            <div class="score"></div>
+            </div>
+            </div> 
+            <div class="item">
+              <div class="pos3">
+              <div class="name">
+                </div>
+                <div class="score"></div>
+                </div>
+                </div> 
+                <div class="item">
+                  <div class="pos4">
+                  <div class="name">
+                    </div>
+                    <div class="score"></div>
+                    </div>
+                    </div> 
+                    <div class="item">
+                      <div class="pos5">
+                      <div class="name">
+                        </div>
+                        <div class="score"></div>
+                        </div>
+                        </div>
+                        
+        </div>
+</div>	
+</div>
+<div id="SpinCircle">
+ <div id='mainCircle' class="mainCircle">
+     <div id="box" class="box">
+         <div class="circle1">
+<span id="50" class="span1"><b>50</b></span>
+<span id="150" class="span2"><b>150</b></span>
+<span id="250" class="span3"><b>250</b></span>
+<span id="350" class="span4"><b>350</b></span>
+         </div>
+         <div class="circle2">
+            <span id="10" class="span1"><b>10</b></span>
+            <span id="0" class="span2"><b>0</b></span>
+            <span id="75" class="span3"><b>75</b></span>
+            <span id="300" class="span4"><b>300</b></span>
+         </div> 
+     </div>
+     <button class="spin" onclick="handleSpin()">SPIN</button>
+ </div>
+
+<div id="status"></div>
+<button id="goBack" type="button" class="btn btn-outline-primary">Back to Main Menu</button>
+</div> 
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+</html>
