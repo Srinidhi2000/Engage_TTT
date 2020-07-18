@@ -295,15 +295,7 @@ function beginPlaying(){
         });
    }
    if(gameType=="compete"){
-    // fetch(`/${Player1Name}`,{method : "get"}).then((response)=>{
-    //     return response.json();
-    // }).then((data)=>{
-    //     console.log(data);
-    //     for(var i=0;i<data.length;i++){
-    //         PlayerList[i]=data[i];            
-    //     }
-    // });
-    fetch('/getleaderBoard',{method : "get"}).then((response)=>{
+    fetch(`/${Player1Name}`,{method : "get"}).then((response)=>{
         return response.json();
     }).then((data)=>{
         console.log(data);
@@ -311,6 +303,14 @@ function beginPlaying(){
             PlayerList[i]=data[i];            
         }
     });
+    // fetch('/getleaderBoard',{method : "get"}).then((response)=>{
+    //     return response.json();
+    // }).then((data)=>{
+    //     console.log(data);
+    //     for(var i=0;i<data.length;i++){
+    //         PlayerList[i]=data[i];            
+    //     }
+    // });
 }
     if(whoWon=="Computer"&&isTwoMode==false&&isReplay==true){
         startTimer();
