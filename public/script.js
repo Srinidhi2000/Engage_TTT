@@ -310,16 +310,7 @@ function beginPlaying(){
    }
 
    if(gameType=="compete"){
-    // fetch(`/${Player1Name}`,{method : "get"}).then((response)=>{
-    //     return response.json();
-    // }).then((data)=>{
-    //     console.log(data);
-    //     for(var i=0;i<data.length;i++){
-    //         PlayerList[i]=data[i];            
-    //     }
-    // });
-    var display="display_leaderboard";
-    fetch(`/${display}`,{method : "get"}).then((response)=>{
+    fetch(`/${Player1Name}`,{method : "get"}).then((response)=>{
         return response.json();
     }).then((data)=>{
         console.log(data);
@@ -874,5 +865,14 @@ $(function(){
 
   //function for leaderboard
   function displayLeaderBoard(){
-
+    var usersList=[];
+    var display="display_leaderboard";
+    fetch(`/${display}`,{method : "get"}).then((response)=>{
+        return response.json();
+    }).then((data)=>{
+        console.log(data);
+        for(var i=0;i<data.length;i++){
+            usersList[i]=data[i];            
+        }
+    });
   }
