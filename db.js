@@ -1,8 +1,8 @@
 const MongoClient=require("mongodb").MongoClient;
 const ObjectID=require('mongodb').ObjectID;
 const dbname="leaderBoard_mongodb";
-//const url=process.env.MONGODB_URI||"mongodb://localhost:27017/";
-const url = "mongodb+srv://srinidhi:123321@clusterttt.lkw7g.mongodb.net/tttboard?retryWrites=true&w=majority";
+const url=process.env.MONGODB_URI||"mongodb://localhost:27017/";
+
 const mongoOptions={useNewUrlParser:true};
 const state={
     db:null
@@ -17,7 +17,7 @@ const connect=(cb)=>{
           if(err){
               cb(err);
           }else{
-            state.db=client.db("tttboard");
+            state.db=client.db("heroku_59gzl3wp");
             cb();          
           }
       });
