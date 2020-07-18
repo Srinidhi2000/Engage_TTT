@@ -1,7 +1,8 @@
 const MongoClient=require("mongodb").MongoClient;
 const ObjectID=require('mongodb').ObjectID;
 const dbname="leaderBoard_mongodb";
-const url=process.env.MONGODB_URI||"mongodb://localhost:27017/";
+//const url=process.env.MONGODB_URI||"mongodb://localhost:27017/";
+const url = "mongodb+srv://srinidhi:123321@clusterttt.lkw7g.mongodb.net/ClusterTTT?retryWrites=true&w=majority";
 const mongoOptions={useNewUrlParser:true};
 const state={
     db:null
