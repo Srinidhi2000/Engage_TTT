@@ -41,10 +41,8 @@ $(function(){
           display:'flex'
       })
     });
-   
   });
 $(function(){
-
     // Validation for the name fields
     $('#submitName').on('click',function(){
         if($('#Player1Name').val()!=""){
@@ -57,7 +55,6 @@ $(function(){
                     $('#submitName').css({
                         display:'none'
                     });
-                   
                 }else{
                     alert("Enter the name(s) to play!!");
                 }
@@ -344,6 +341,7 @@ function cellClick(cell){
 function gameTurn(cellID,player){
     boardList[cellID]=player;
     $('#'+cellID).html(player);
+    PlayAudio('balldrop');
     let gameWon=checkWin(boardList,player);
     if(gameWon) gameOver(gameWon)
 }
@@ -450,7 +448,8 @@ function storeWinner(winnerName,gameWn){
                 if(!data.error){
                     if(data.result.ok == 1 && data.result.n == 1){
                 console.log("success");   
-                } }
+                } 
+            }
                 else
                 console.log("was not able to add data");      
             });
@@ -563,6 +562,7 @@ function displayWinner(winner,gameWon){
     $('#spinButton').css({
         display:'none'
     });  
+    PlayAudio('win');
     if(displayBestTime!=null){
         $('.endgame .text').html(winner+ "<br> Best Time:"+displayBestTime);
     }
@@ -578,11 +578,19 @@ function displayWinner(winner,gameWon){
         if(isSpin&&winner=="You win"){
             $('#spinButton').css({display:'block'});
         }
-          
-     
     }
     }
-
+//Function to play audio
+function PlayAudio(soundName){
+    var sound=new Audio();
+    if(soundName=="win"){
+sound.src="win.mp3";
+sound.play();
+    }else if(soundName=='balldrop'){
+        sound.src="balldrop.mp3";
+        sound.play();
+    }
+}
 //Function to obtain the computer move if levelselected=2,3,4 
 function minimax(playerTile){
         var Secondplayer=playerTile=='X'?'O':'X';
@@ -592,8 +600,7 @@ function minimax(playerTile){
             if(boardList[i]!="X"&&boardList[i]!="O"){
                 temp=boardList[i];
                 boardList[i]=playerTile;
-                var move=maxsearch(0,playerTile,Secondplayer);
-     
+                var move=maxsearch(0,playerTile,Secondplayer);     
                 if(move<val){
                     val=move;
                     x=i;
