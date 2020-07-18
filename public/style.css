@@ -269,6 +269,12 @@ html {
       font-size: 15px;
       margin: 10px;
   }
+  i{
+      color: white;
+  }
+  .nameInput input:disabled{
+      color:white;
+  }
   .nameInput button{
   /*padding:7px;
   height:40px;*/

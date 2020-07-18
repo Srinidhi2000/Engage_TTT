@@ -6,6 +6,7 @@ var secondPlayer;
 var currPlayer;
 var isTwoMode;
 var whoWon;
+var isSoundEnabled=true;
 var isReplay;
 var isSpin=true;
 var isnameEntered=false;
@@ -33,6 +34,14 @@ const toWinList=[
 [6,4,2]
 ];
 $(function(){
+    $(".soundOption ").on('click',function(){
+        isSoundEnabled=!isSoundEnabled;
+        if(isSoundEnabled){
+            $("#sound").removeClass("fa fa-volume-off").addClass("fa fa-volume-up");
+        }else{
+            $("#sound").removeClass("fa fa-volume-up").addClass("fa fa-volume-off");
+        }
+    });
     $('#spinButton').on('click',function(){
         $("#container").css({
             display:'none'
@@ -56,6 +65,8 @@ $(function(){
                     $('#submitName').css({
                         display:'none'
                     });
+                    $('#Player1Name').attr('disabled','true');
+                    $('#Player2Name').attr('disabled','true');
                 }else{
                     alert("Enter the name(s) to play!!");
                 }
@@ -66,6 +77,8 @@ $(function(){
                 $('#submitName').css({
                     display:'none'
                 });
+                $('#Player1Name').attr('disabled','true');
+                $('#Player2Name').attr('disabled','true');
             }
         }else{
             alert("Enter the name(s) to play!!");
@@ -175,6 +188,10 @@ function displayMainMenuOptions(){
 
 //To hide main menu options when a particular mode is clicked
 function hideMainMenuOptions(){
+    $('#levelTwo').parent('.btn').removeClass('active');
+    $('#levelThree').parent('.btn').removeClass('active');
+    $('#levelFour').parent('.btn').removeClass('active');
+    $('#levelOne').parent('.btn').addClass('active');
     $(".chooseGame").css({
         display:'none',
     });
@@ -233,6 +250,8 @@ function restartGame(){
     $('#submitName').css({
         display:'inline-block'
     });
+    $('#Player1Name').removeAttr('disabled');
+    $('#Player2Name').removeAttr('disabled');
     $('#Player1Name').val('');
     $('#Player2Name').val('');
     Player1Name=null;
@@ -357,7 +376,10 @@ function cellClick(cell){
 function gameTurn(cellID,player){
     boardList[cellID]=player;
     $('#'+cellID).html(player);
-    PlayAudio('balldrop');
+    if(isSoundEnabled){
+        PlayAudio('balldrop');
+    }
+    
     let gameWon=checkWin(boardList,player);
     if(gameWon) gameOver(gameWon)
 }
@@ -641,8 +663,11 @@ function displayWinner(winner,gameWon){
     });
     $('#spinButton').css({
         display:'none'
-    });  
-    PlayAudio('win');
+    }); 
+    if(isSoundEnabled){
+        PlayAudio('win');
+    } 
+   
     if(displayBestTime!=null){
         $('.endgame .text').html(winner+ "<br> Best Time:"+displayBestTime);
     }
