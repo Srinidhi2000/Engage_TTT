@@ -5,12 +5,13 @@ script.use(bodyParser.json());
 const path=require('path');
 const db=require('./db');
 const collection='leaderBoard';
+var PORT=process.env.PORT||3000;
 script.use(express.static(path.join(__dirname, 'public')));
 db.connect((err)=>{
     if(err){
         console.log('unable to connect to database'+err);
     }else{
-script.listen(3000,()=>{
+script.listen(PORT,()=>{
     console.log('connected to database');
 });
 }
