@@ -1,7 +1,7 @@
 const MongoClient=require("mongodb").MongoClient;
 const ObjectID=require('mongodb').ObjectID;
 const dbname="leaderBoard_mongodb";
-const url=process.env.MONGODB_URI||"mongodb://localhost:27017/test";
+const url=process.env.MONGODB_URI||"mongodb://localhost:27017/";
 const mongoOptions={useNewUrlParser:true};
 const state={
     db:null
