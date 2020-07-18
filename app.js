@@ -31,11 +31,22 @@ db.getDB().collection(collection).find({Name:username}).toArray((err,documents)=
     }
 });
 });
+// script.get('/getleaderBoard',(req,res)=>{
+    
+//  db.getDB().collection(collection).find({}).toArray((err,documents)=>{
+//      if(err){
+//          console.log(err);
+//      }else{
+//          res.json(documents);
+//          console.log("entire"+documents);
+//      }
+//  });
+//  });
     
 script.put('/:id',(req,res)=>{
 const userID=req.params.id;
 const userInput=req.body;
-db.getDB().collection(collection).findOneAndUpdate({_id:db.getPrimaryKey(userID)},{$set:{Time:userInput}},{returnOriginal:false},(err,result)=>{
+db.getDB().collection(collection).findOneAndUpdate({_id:db.getPrimaryKey(userID)},{$set:{Time:userInput.Time,score:userInput.score,points:userInput.points}},{returnOriginal:false},(err,result)=>{
     if(err)
     console.log(err);
     else

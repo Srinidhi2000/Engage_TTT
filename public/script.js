@@ -19,7 +19,7 @@ var Player2Name;
 var hintNum=0;
 var hintA=0;
 var hintB=0;
-var pointsScored;
+var pointsScored=100;
 var displayBestTime;
 const toWinList=[
 [0,1,2],
@@ -259,7 +259,7 @@ function checkNameEntered(){
 function startGame(){
 displayBestTime=null;
 isSpin=true;
-pointsScored=0;
+pointsScored=-1;
     $(".endgame").css({
         display:'none',
     });
@@ -295,7 +295,15 @@ function beginPlaying(){
         });
    }
    if(gameType=="compete"){
-    fetch(`/${Player1Name}`,{method : "get"}).then((response)=>{
+    // fetch(`/${Player1Name}`,{method : "get"}).then((response)=>{
+    //     return response.json();
+    // }).then((data)=>{
+    //     console.log(data);
+    //     for(var i=0;i<data.length;i++){
+    //         PlayerList[i]=data[i];            
+    //     }
+    // });
+    fetch('/getleaderBoard',{method : "get"}).then((response)=>{
         return response.json();
     }).then((data)=>{
         console.log(data);
@@ -388,7 +396,7 @@ function storeWinner(winnerName,gameWn){
                 min:m,
                 sec:s,
                 millis:ms,
-            };;
+            };
         }else{
              currWinner={
                 Name:Player2Name,
@@ -400,21 +408,30 @@ function storeWinner(winnerName,gameWn){
        
         var isNameMatched=false;
             for(var i=0;i<PlayerList.length;i++){
+               
                 if(PlayerList[i].Name==currWinner.Name){
                     isNameMatched=true;
                     var time=PlayerList[i].Time
-                   if(checkBestTime(time,currWinner)){
+                    var totalspoints;
+                    if(pointsScored!=-1){
+                         totalspoints= PlayerList[i].points+pointsScored;
+                    }else{
+                         totalspoints=PlayerList[i].points;
+                    }
+                    var totalScore=PlayerList[i].score+setTotalScore();
+                    if(checkBestTime(time,currWinner)){
                         isBest=true;
                         var sec=currWinner.sec<10?"0"+currWinner.sec:currWinner.sec; 
                          var min=currWinner.min<10?"0"+currWinner.min:currWinner.min; 
-                         var milli=currWinner.millis<10?"0"+currWinner.millis:currWinner.millis; 
+                         var milli=currWinner.millis<10?"0"+currWinner.millis:currWinner.millis;
+                        
                         //update
                         fetch(`/${PlayerList[i]._id}`,{
                             method : "put",
                             headers : {
                                 "Content-Type" : "application/json; charset=utf-8" 
                             },
-                            body : JSON.stringify({min:min,sec:sec,millis:milli})
+                            body : JSON.stringify({Time:{min:min,sec:sec,millis:milli},score:totalScore,points:totalspoints})
                         }).then((response)=>{
                             return response.json();
                         }).then((data)=>{
@@ -438,9 +455,15 @@ function storeWinner(winnerName,gameWn){
             var min=currWinner.min<10?"0"+currWinner.min:currWinner.min; 
             var milli=currWinner.millis<10?"0"+currWinner.millis:currWinner.millis; 
           displayBestTime=min+":"+sec+":"+milli;
+          if(pointsScored!=-1){
+            totalspoints= pointsScored;
+       }else{
+            totalspoints=-1;
+       }
+       var currScore=setTotalScore();
           fetch('/',{
                 method : 'post',
-                body : JSON.stringify({Name:currWinner.Name,Time:{min:min,sec:sec,millis:milli}}),
+                body : JSON.stringify({Name:currWinner.Name,Time:{min:min,sec:sec,millis:milli},score:currScore,points:totalspoints}),
                 headers : {
                     "Content-Type" : "application/json; charset=utf-8"
                 }
@@ -456,7 +479,18 @@ function storeWinner(winnerName,gameWn){
             });
                 }
     }
-
+//To set the score based on the level
+function setTotalScore(){
+    var score;
+if(levelSelected=="levelOne"){
+score="1";
+}else if(levelSelected=="levelTwo"){
+    score="5";
+}else if(levelSelected=="levelThree"){
+    score="10"
+}
+return score;
+}
 //Check if it is the best time of the user
 function checkBestTime(BestTime,currWinner){
     if(BestTime.min>=currWinner.min){
