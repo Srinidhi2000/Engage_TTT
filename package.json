@@ -1,0 +1,26 @@
+{
+  "name": "Engage_TTT",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Srinidhi2000/Engage_TTT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Srinidhi2000/Engage_TTT/issues"
+  },
+  "homepage": "https://github.com/Srinidhi2000/Engage_TTT#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.9",
+    "path": "^0.12.7"
+  }
+}
