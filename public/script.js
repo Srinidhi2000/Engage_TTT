@@ -873,6 +873,6 @@ $(function(){
   });
 
   //function for leaderboard
-  function displayLeaderBoard{
-      
+  function displayLeaderBoard(){
+
   }
