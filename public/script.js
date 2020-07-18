@@ -414,11 +414,11 @@ function storeWinner(winnerName,gameWn){
                     var time=PlayerList[i].Time
                     var totalspoints;
                     if(pointsScored!=-1){
-                         totalspoints= PlayerList[i].points+pointsScored;
+                         totalspoints= (parseInt(PlayerList[i].points)+pointsScored).toString();
                     }else{
                          totalspoints=PlayerList[i].points;
                     }
-                    var totalScore=PlayerList[i].score+setTotalScore();
+                    var totalScore=(parseInt(PlayerList[i].score)+parseInt(setTotalScore())).toString();
                     if(checkBestTime(time,currWinner)){
                         isBest=true;
                         var sec=currWinner.sec<10?"0"+currWinner.sec:currWinner.sec; 
@@ -456,9 +456,9 @@ function storeWinner(winnerName,gameWn){
             var milli=currWinner.millis<10?"0"+currWinner.millis:currWinner.millis; 
           displayBestTime=min+":"+sec+":"+milli;
           if(pointsScored!=-1){
-            totalspoints= pointsScored;
+            totalspoints= pointsScored.toString();
        }else{
-            totalspoints=-1;
+            totalspoints=(-1).toString();
        }
        var currScore=setTotalScore();
           fetch('/',{
