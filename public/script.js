@@ -318,6 +318,7 @@ function beginPlaying(){
             PlayerList[i]=data[i];            
         }
     });
+    
 }
     if(whoWon=="Computer"&&isTwoMode==false&&isReplay==true){
         startTimer();
@@ -378,12 +379,11 @@ function checkWin(board,player){
 function gameOver(gameWon){
     for(var i in gameWon.winCells){
         $('#'+gameWon.winCells[i]).css({
-            'background-color':gameWon.player==player?"black":"black"
+            'background-color':gameWon.player==player?"black":"black",
         });   
     }
     $(".cell").each(function(i){
         $(".cell")[i].removeEventListener('click',cellClick,false);});
-       
         if(isTwoMode){
             currWin=gameWon.player==player?Player1Name+" Wins":Player2Name+" Wins";
         }else{
@@ -875,4 +875,5 @@ $(function(){
             usersList[i]=data[i];            
         }
     });
-  }
+console.log("userlist"+usersList.length);  
+}
