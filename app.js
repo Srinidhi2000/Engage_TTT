@@ -22,14 +22,26 @@ script.get('/',(req,res)=>{
 
 script.get('/:username',(req,res)=>{
    const username=req.params.username;
-db.getDB().collection(collection).find({Name:username}).toArray((err,documents)=>{
-    if(err){
-        console.log(err);
-    }else{
-        res.json(documents);
-        console.log(documents);
-    }
-});
+   if(username!="display_leaderboard"){
+    db.getDB().collection(collection).find({Name:username}).toArray((err,documents)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.json(documents);
+            console.log(documents);
+        }
+    });
+   }else{
+    db.getDB().collection(collection).find({}).toArray((err,documents)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.json(documents);
+            console.log(documents);
+        }
+    });
+   }
+
 });
 // script.get('/getleaderBoard',(req,res)=>{
     
@@ -46,7 +58,7 @@ db.getDB().collection(collection).find({Name:username}).toArray((err,documents)=
 script.put('/:id',(req,res)=>{
 const userID=req.params.id;
 const userInput=req.body;
-db.getDB().collection(collection).findOneAndUpdate({_id:db.getPrimaryKey(userID)},{$set:{Time:userInput.Time,score:userInput.score,points:userInput.points}},{returnOriginal:false},(err,result)=>{
+db.getDB().collection(collection).findOneAndUpdate({_id:db.getPrimaryKey(userID)},{$set:{"Time":userInput.Time,"score":userInput.score,"points":userInput.points}},{returnOriginal:false},(err,result)=>{
     if(err)
     console.log(err);
     else

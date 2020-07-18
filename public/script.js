@@ -18,6 +18,7 @@ var isCompete=false;
 var Player2Name;
 var hintNum=0;
 var hintA=0;
+var currWin;
 var hintB=0;
 var pointsScored=100;
 var displayBestTime;
@@ -203,19 +204,30 @@ function hideMainMenuOptions(){
         // $(this).css({
         //     'background-color':'red'
         // });
-        resetTimer();
+      
         isReplay=false;
         whoWon=player;
+       
         checkNameEntered();
+          resetTimer();
        });
 });
 
 //To replay with the same username
 function Replay(){
-    resetTimer();
+   $('#mainMenu').css({
+       display:'block'
+   });
+   $('.column').css({
+display:'block'
+   });
     isReplay=true;
-    //isSpin=true;
-       checkNameEntered();
+    if(currWin=="You win"){
+        storeWinner();
+    }
+
+    resetTimer();
+    checkNameEntered();
    }
 
 //To restart the game in the same mode but with different username   
@@ -259,6 +271,7 @@ function checkNameEntered(){
 function startGame(){
 displayBestTime=null;
 isSpin=true;
+
 pointsScored=-1;
     $(".endgame").css({
         display:'none',
@@ -286,6 +299,7 @@ pointsScored=-1;
 
 // Start playing
 function beginPlaying(){
+    currWin=null;
     $(".cell").each(function(i){
         $(".cell")[i].addEventListener('click',cellClick,false);
     });
@@ -294,16 +308,9 @@ function beginPlaying(){
             display:'block'
         });
    }
+
    if(gameType=="compete"){
-    fetch(`/${Player1Name}`,{method : "get"}).then((response)=>{
-        return response.json();
-    }).then((data)=>{
-        console.log(data);
-        for(var i=0;i<data.length;i++){
-            PlayerList[i]=data[i];            
-        }
-    });
-    // fetch('/getleaderBoard',{method : "get"}).then((response)=>{
+    // fetch(`/${Player1Name}`,{method : "get"}).then((response)=>{
     //     return response.json();
     // }).then((data)=>{
     //     console.log(data);
@@ -311,6 +318,15 @@ function beginPlaying(){
     //         PlayerList[i]=data[i];            
     //     }
     // });
+    var display="display_leaderboard";
+    fetch(`/${display}`,{method : "get"}).then((response)=>{
+        return response.json();
+    }).then((data)=>{
+        console.log(data);
+        for(var i=0;i<data.length;i++){
+            PlayerList[i]=data[i];            
+        }
+    });
 }
     if(whoWon=="Computer"&&isTwoMode==false&&isReplay==true){
         startTimer();
@@ -376,7 +392,7 @@ function gameOver(gameWon){
     }
     $(".cell").each(function(i){
         $(".cell")[i].removeEventListener('click',cellClick,false);});
-        var currWin;
+       
         if(isTwoMode){
             currWin=gameWon.player==player?Player1Name+" Wins":Player2Name+" Wins";
         }else{
@@ -387,24 +403,31 @@ function gameOver(gameWon){
 }
 
 //Store the data if compete mode
-function storeWinner(winnerName,gameWn){
-        var isBest=false;
+function storeWinner(){
+    //winnerName,gameWn    
+    var isBest=false;
         var currWinner;
-        if(gameWn.player==player){
-            currWinner={
+        // if(gameWn.player==player){
+        //     currWinner={
+        //         Name:Player1Name,
+        //         min:m,
+        //         sec:s,
+        //         millis:ms,
+        //     };
+        // }else{
+        //      currWinner={
+        //         Name:Player2Name,
+        //         min:m,
+        //         sec:s,
+        //         millis:ms,
+        //     };
+        // }
+       currWinner={
                 Name:Player1Name,
                 min:m,
                 sec:s,
                 millis:ms,
             };
-        }else{
-             currWinner={
-                Name:Player2Name,
-                min:m,
-                sec:s,
-                millis:ms,
-            };
-        }
        
         var isNameMatched=false;
             for(var i=0;i<PlayerList.length;i++){
@@ -419,37 +442,38 @@ function storeWinner(winnerName,gameWn){
                          totalspoints=PlayerList[i].points;
                     }
                     var totalScore=(parseInt(PlayerList[i].score)+parseInt(setTotalScore())).toString();
+                    var min,sec,milli;
                     if(checkBestTime(time,currWinner)){
                         isBest=true;
-                        var sec=currWinner.sec<10?"0"+currWinner.sec:currWinner.sec; 
-                         var min=currWinner.min<10?"0"+currWinner.min:currWinner.min; 
-                         var milli=currWinner.millis<10?"0"+currWinner.millis:currWinner.millis;
-                        
-                        //update
-                        fetch(`/${PlayerList[i]._id}`,{
-                            method : "put",
-                            headers : {
-                                "Content-Type" : "application/json; charset=utf-8" 
-                            },
-                            body : JSON.stringify({Time:{min:min,sec:sec,millis:milli},score:totalScore,points:totalspoints})
-                        }).then((response)=>{
-                            return response.json();
-                        }).then((data)=>{
-                            if(data.ok == 1){
-                                     
-                            }else{
-                                console.log("Error updating");
-                            }
-                        });
-                       
+                         sec=currWinner.sec<10?"0"+currWinner.sec:currWinner.sec; 
+                          min=currWinner.min<10?"0"+currWinner.min:currWinner.min; 
+                          milli=currWinner.millis<10?"0"+currWinner.millis:currWinner.millis;
                         displayBestTime=min+":"+sec+":"+milli;   
                    }else{
-                    var sec=time.sec; 
-                     var min=time.min; 
-                     var milli=time.millis; 
+                     sec=time.sec; 
+                      min=time.min; 
+                      milli=time.millis; 
                    displayBestTime=min+":"+sec+":"+milli;  
                    }
-                }}
+                   //update
+                   fetch(`/${PlayerList[i]._id}`,{
+                    method : "put",
+                    headers : {
+                        "Content-Type" : "application/json; charset=utf-8" 
+                    },
+                    body : JSON.stringify({"Time":{min:min,sec:sec,millis:milli},"score":totalScore,"points":totalspoints})
+                }).then((response)=>{
+                    return response.json();
+                }).then((data)=>{
+                    if(data.ok == 1){
+                             
+                    }else{
+                        console.log("Error updating");
+                    }
+                });
+               
+                }
+            }
                 if(isNameMatched==false){
                     var sec=currWinner.sec<10?"0"+currWinner.sec:currWinner.sec; 
             var min=currWinner.min<10?"0"+currWinner.min:currWinner.min; 
@@ -463,7 +487,7 @@ function storeWinner(winnerName,gameWn){
        var currScore=setTotalScore();
           fetch('/',{
                 method : 'post',
-                body : JSON.stringify({Name:currWinner.Name,Time:{min:min,sec:sec,millis:milli},score:currScore,points:totalspoints}),
+                body : JSON.stringify({"Name":currWinner.Name,"Time":{"min":min,"sec":sec,"millis":milli},"score":currScore,"points":totalspoints}),
                 headers : {
                     "Content-Type" : "application/json; charset=utf-8"
                 }
@@ -479,6 +503,7 @@ function storeWinner(winnerName,gameWn){
             });
                 }
     }
+   
 //To set the score based on the level
 function setTotalScore(){
     var score;
@@ -581,16 +606,46 @@ function checkDraw(){
             return false;
 }
 
-//Display the result
+//Display the resultgameWon
 function displayWinner(winner,gameWon){
     pauseTimer();
-    if((winner!='Tie'&&winner!="You Lost")&&isCompete==true){
-        storeWinner(winner,gameWon);
-    }
+      if((winner!='Tie'&&winner!="You Lost")&&isCompete==true){
+    var currWinner={
+        Name:Player1Name,
+        min:m,
+        sec:s,
+        millis:ms,
+    };
+    
+    if(PlayerList.length!=0){
+        if(PlayerList[0].Name==currWinner.Name){
+        var time=PlayerList[0].Time
+        if(checkBestTime(time,currWinner)){
+        isBest=true;
+         sec=currWinner.sec<10?"0"+currWinner.sec:currWinner.sec; 
+          min=currWinner.min<10?"0"+currWinner.min:currWinner.min; 
+          milli=currWinner.millis<10?"0"+currWinner.millis:currWinner.millis;
+        displayBestTime=min+":"+sec+":"+milli;   
+   }else{
+      sec=time.sec; 
+      min=time.min; 
+      milli=time.millis; 
+   displayBestTime=min+":"+sec+":"+milli;  
+   }}}else{
+     sec=currWinner.sec<10?"0"+currWinner.sec:currWinner.sec; 
+     min=currWinner.min<10?"0"+currWinner.min:currWinner.min; 
+     milli=currWinner.millis<10?"0"+currWinner.millis:currWinner.millis; 
+  displayBestTime=min+":"+sec+":"+milli; 
+   }}
     $('.endgame').css({
         display:'block'
     });
-  
+    $('#mainMenu').css({
+        display:'none'
+    });
+    $('.column').css({
+ display:'none'
+    });
     $('.endgame button').css({
         display:'inline-block'
     });
@@ -780,7 +835,7 @@ spinTile="300";
 }else if(absDeg>=22.5){
     spinTile="75";
 }
-pointsScored=spinTile;
+pointsScored=parseInt(spinTile);
 console.log(pointsScored);
 setTimeout(function(){
     document.getElementById('goBack').style.display="block";
@@ -816,3 +871,8 @@ $(function(){
        cnt=false;
     });
   });
+
+  //function for leaderboard
+  function displayLeaderBoard{
+      
+  }
