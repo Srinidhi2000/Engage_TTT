@@ -7,14 +7,17 @@ const db=require('./db');
 const collection='leaderBoard';
 var PORT=process.env.PORT||3000;
 script.use(express.static(path.join(__dirname, 'public')));
-db.connect((err)=>{
-    if(err){
-        console.log('unable to connect to database'+err);
-    }else{
+// db.connect((err)=>{
+//     if(err){
+//         console.log('unable to connect to database'+err);
+//     }else{
+// script.listen(PORT,()=>{
+//     console.log('connected to database');
+// });
+// }
+// });
 script.listen(PORT,()=>{
     console.log('connected to database');
-});
-}
 });
 script.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'tic_tac_toe.html'));
