@@ -17,7 +17,7 @@ const connect=(cb)=>{
           if(err){
               cb(err);
           }else{
-            state.db=client.db("tttboard");
+         //   state.db=client.db("tttboard");
             cb();          
           }
       });
