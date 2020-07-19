@@ -49,7 +49,16 @@ $(function(){
       //  $("#spinWheel").load("spinningWheel.html"); 
       $('#SpinCircle').css({
           display:'flex'
-      })
+      });
+       $('body').css({
+//         display: 'flex',
+//         'justify-content':'center',
+//         'align-items': 'center',
+//         'height': '100vh',
+            overflow: 'hidden',
+// 'background-image': 'url(/bg1.png)',
+// 'background-size': 'cover'
+       });
     });
   });
 $(function(){
@@ -493,7 +502,7 @@ function storeWinner(){
           if(pointsScored!=-1){
             totalspoints= pointsScored.toString();
        }else{
-            totalspoints=(-1).toString();
+            totalspoints=(0).toString();
        }
        var currScore=setTotalScore();
           fetch('/',{
@@ -863,6 +872,9 @@ console.log(pointsScored);
 setTimeout(function(){
     document.getElementById('goBack').style.display="block";
     document.getElementById('status').style.display="block";
+    $('body').css({
+        overflow:'visible'
+    });
     if(spinTile=="0"){
         document.getElementById('status').innerHTML="Oops!! Better Luck Next Time";
     }else{
@@ -894,7 +906,96 @@ $(function(){
        cnt=false;
     });
   });
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function drop() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  var challengetime;
+function boardsize4(){
+    challengetime=10;
+}
+function boardsize5(){
+    challengetime=15;
+}
+function boardsize6(){
+    challengetime=25;
+}
+function boardsize7(){
+    challengetime=30;
+}
+function boardsize8(){
+    challengetime=40;
+}
+function boardsize9(){
+    challengetime=50;
+}
+function boardsize10(){
+    challengetime=60;
+}
 
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+            
+    document.querySelector(".s4x4").addEventListener("click", boardsize4);
+    document.querySelector(".s5x5").addEventListener("click", boardsize5);
+    document.querySelector(".s6x6").addEventListener("click", boardsize6);
+    document.querySelector(".s7x7").addEventListener("click", boardsize7);
+    document.querySelector(".s8x8").addEventListener("click", boardsize8);
+    document.querySelector(".s9x9").addEventListener("click", boardsize9);
+    document.querySelector(".s10x10").addEventListener("click", boardsize10);
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+//countdown timer
+
+var countdown = setInterval(function(){
+    challengetime--;
+    (challengetime == 1) ? document.getElementById("plural").textContent = "" : document.getElementById("plural").textContent = "s";
+    document.getElementById("countdown").textContent = challengetime;
+    if (challengetime <= 0) clearInterval(countdown);
+},1000);
+
+//   //function for leaderboard
+//   function displayLeaderBoard(){
+//     var usersList=[];
+//     var display="display_leaderboard";
+//     fetch(`/${display}`,{method : "get"}).then((response)=>{
+//         return response.json();
+//     }).then((data)=>{
+//         console.log(data);
+//         for(var i=0;i<data.length;i++){
+//             usersList[i]=data[i];            
+//         }
+//     });
+// console.log("userlist"+usersList.length);  
+// }
+function compare(a, b){
+    if (a.score<b.score) {
+      return -1;
+    }
+    if (a.score>b.score) {
+      return 1;
+    }
+    return 0;
+  }
+  function comparep(a, b){
+    if (a.points<b.points) {
+      return -1;
+    }
+    if (a.points>b.points) {
+      return 1;
+    }
+    return 0;
+  }
   //function for leaderboard
   function displayLeaderBoard(){
     var usersList=[];
@@ -906,6 +1007,24 @@ $(function(){
         for(var i=0;i<data.length;i++){
             usersList[i]=data[i];            
         }
+        document.querySelector('.center').style.display='block';
+        usersList.sort(compare);
+        document.querySelector('.pos1 .name').innerHTML=usersList[0].Name;
+        document.querySelector('.pos1 .score').innerHTML=usersList[0].score;
+        document.querySelector('.pos2 .name').innerHTML=usersList[1].Name;
+        document.querySelector('.pos2 .score').innerHTML=usersList[1].score;
+        document.querySelector('.pos3 .name').innerHTML=usersList[2].Name;
+        document.querySelector('.pos3 .score').innerHTML=usersList[2].score;
+        document.querySelector('.pos4 .name').innerHTML=usersList[3].Name;
+        document.querySelector('.pos4 .score').innerHTML=usersList[3].score;
+        document.querySelector('.pos5 .name').innerHTML=usersList[4].Name;
+        document.querySelector('.pos5 .score').innerHTML=usersList[4].score;
+        usersList.sort(comparep);
+        document.querySelector('.pos_1 .name').innerHTML=usersList[0].Name;
+        document.querySelector('.pos_1 .point').innerHTML=usersList[0].points;
+        document.querySelector('.pos_2 .name').innerHTML=usersList[1].Name;
+        document.querySelector('.pos_2 .point').innerHTML=usersList[1].points;
+        document.querySelector('.pos_3 .name').innerHTML=usersList[2].Name;
+        document.querySelector('.pos_3 .point').innerHTML=usersList[2].points;
     });
-console.log("userlist"+usersList.length);  
-}
+  }

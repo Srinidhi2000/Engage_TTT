@@ -1,21 +1,26 @@
-
-html {
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:400,900&display=swap');
+/* html {
     box-sizing: border-box;
   
-  }
+  } */
   body{
-      background-color: #eaeaea;
-      position: relative;
-      background-image:  url('/bg1.png');
-      /* &:before{
+        background-color: #eaeaea;
+         /* position: relative; */
+        background-image:  url('/bg1.png');
+        /* &:before{
           position: absolute;
-      } */
+         } */
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        height: 100vh;
+        background-size: cover;
   }
-  *{
+   #TTT_Board,#container,td{
     box-sizing: border-box;
     border-radius: 10px;
     /*box-shadow:0 1px 4px rgba(0,0,0,0.5);*/
-  }
+   }
   body, html{
   height:100%;
   }
@@ -36,11 +41,47 @@ html {
       margin: 20px auto;
     }
   }
-  
+  td{
+    border:5px solid black;
+    height:100px;
+    width:100px;
+    color:brown;
+    text-align:center;
+    vertical-align:middle;
+    font-size:50px;
+    cursor:pointer;
+    }
+    #board{
+        position: relative;
+       margin: auto 15% auto;  
+        text-align: center;
+    
+    }
+    
+    table{
+     border-collapse:collapse; 
+      margin: auto; 
+    table-layout: fixed;
+     width:450px; 
+    }
   @media (max-width: 575px) {
     #container {
       margin-top: 0px;
     }
+   
+  #board{
+    position: relative;
+   margin: auto 5% auto;  
+    text-align: center;
+
+}
+
+table{
+/* border-collapse:collapse; */
+margin: auto;
+table-layout: fixed;
+width:350px;
+}
   }
   
   .giph{
@@ -53,40 +94,17 @@ html {
       width: 400px;
       height: 400px;
   }
-  /* .cell{
+   /* .cell{
       height: 33.33%;
       width: 33.33%;
-  } */
-  
+  } 
+   */
   #TTT_Board{
   display:none;
   }
   
-  #board{
-      position: relative;
-      margin: auto 25% auto;
-  
-      text-align: center;
-  
-  }
-  
-  
-  
-  table{
-  border-collapse:collapse;
-  margin: auto;
-  
-  }
-  td{
-  border:5px solid black;
-  height:100px;
-  width:100px;
-  color:brown;
-  text-align:center;
-  vertical-align:middle;
-  font-size:50px;
-  cursor:pointer;
-  }
+
+
   td:hover{
       background-color: grey;
   }
@@ -108,7 +126,7 @@ html {
   border-right:0;
   }
   .card_container {
-      width: 100px;
+      width: 500px;
       height: 100px;
       position: relative;
       border: 5px solid black;
@@ -274,6 +292,7 @@ html {
   }
   .nameInput input:disabled{
       color:white;
+     background-color: #3b134d;
   }
   .nameInput button{
   /*padding:7px;
@@ -299,20 +318,20 @@ html {
       background-color: #724287;
   }
 
-  #SpinCircle{
-    box-sizing: border-box;
+   #SpinCircle{
+    /* box-sizing: border-box;
     border-radius: 0%;
     padding: 0;
     margin: 0;
-    outline: none;
+    outline: none; */
     display: none;
-justify-content:center;
+/* justify-content:center;
 align-items: center;
 height: 100vh;
 overflow: hidden;
 background-image: url('/bg1.png');
-background-size: cover;
-}
+background-size: cover; */
+} 
 
 .mainCircle{
     position: relative;
@@ -448,5 +467,184 @@ box-shadow: none;
 outline: none;
 box-shadow: none;
 }  
+.leaderBoard {
+    display: none;
+}
+
+/*  
+
+body, html {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background: #4B4168;
+	color: #333;
+} */
+
+.center {
+    display: none;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	
+	z-index: 10;
+	font-family: 'Red Hat Display', sans-serif;
+}
+
+.top3 {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	color: #4B4168;
+}
+	.top3 item {
+		box-sizing: border-box;
+		position: relative;
+		background: white;
+		width: 9rem;
+		height: 10rem;
+		text-align: center;
+		padding: 2.8rem 0 0 ;
+		margin: 1rem 1rem 2rem;
+		border-radius: 0.5rem;
+		transform-origin: bottom;
+		cursor: pointer;
+		transition: transform 200ms ease-in-out;
+        box-shadow:0 0 4rem 0 rgba(black, 0.1),0 1rem 2rem -1rem rgba(black, 0.3);
+    }
+		.pos_1,.pos_2,.pos_3 {
+			font-weight: 900;
+			font-size: 1.5rem;
+			margin-bottom: 0.5rem;
+		}
+		
+		.top3 name {
+			font-size: 1.1rem;
+			margin-bottom: 0.5rem;
+		}
+		
+		.point {
+			opacity: 0.5;
+				display: block;
+				content: 'points';
+				opacity: 0.5;
+			}
+		
+		
+		.top3 item one {
+			width: 10rem;
+			height: 11rem;
+			padding-top: 3.5rem;
+			
+			
+		}
+		
+		.top3 item:hover {
+			transform: scale(1.05);
+		}
+	/* }
+} */
+
+.list {
+	padding-left: 2rem;
+	margin: 0 auto;
+}	
+	.list item {
+		position: relative;
+		display: flex;
+		align-items: center;
+		background: white;
+		height: 3rem;
+		border-radius: 4rem;
+		margin-bottom: 2rem;
+		background: #EAA786;
+		transform-origin: left;
+		cursor: pointer;
+		transition: transform 200ms ease-in-out;
+		box-shadow:
+			0 0 4rem 0 rgba(black, 0.1),
+			0 1rem 2rem -1rem rgba(black, 0.3);
+    }
+		.pos1,.pos2,.pos3,.pos4,.pos5 {
+			font-weight: 900;
+			position: absolute;
+			left: -2rem;
+			text-align: center;
+			font-size: 1.25rem;
+			width: 1.5rem;
+			color: white;
+			opacity: 0.6;
+			transition: opacity 200ms ease-in-out;
+		}
+		
+		.list item name {
+			flex-grow: 2;
+			flex-basis: 10rem;
+			font-size: 1.1rem;
+		}
+		
+		.score {
+			margin-right: 1.5rem;
+			opacity: 0.5;
+				margin-right: 1rem;
+				content: 'points';
+				opacity: 0.5;
+			
+		}
+		
+		.list item:hover {
+			transform: scale(1.05);
+        }
+			.pos{
+				opacity: 0.8;
+			}
+/* Dropdown Button */
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Dropdown button on hover & focus */
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content button:hover {background-color: #ddd}
+  
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {display:block;}
+
+#countdown,#ss,#plural{
+    color:white;
+}
   
   

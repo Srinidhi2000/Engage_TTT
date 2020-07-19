@@ -15,7 +15,6 @@ Tic Tac Toe
   <script src="/script.js"></script>
 <div id="spinWheel"></div> 
   <div id="container">
-
 <div class="chooseGame">
 <div class="soundOption">
   <i id="sound" class="fa fa-volume-up"></i>
@@ -97,12 +96,14 @@ Tic Tac Toe
 <table id="TTT_Board">
 <tr>
 
-<td class="cell" id="0"><section class="card_ontainer">
+<td class="cell" id="0">
+  <!-- <section class="card_container">
   <div class="card" onclick="flip()">
     <div class="front"></div>
     <div class="back"></div>
   </div>
-</section></td>
+</section> -->
+</td>
 <td class="cell" id="1"></td>
 <td class="cell" id="2"></td>
 </tr>
@@ -123,8 +124,88 @@ Tic Tac Toe
 <div><button id="spinButton">Try SpinWheel</button></div>
 <button onClick="Replay()">Replay</button>
 </div>
-
 </div>
+<div class="dropdown">
+  <button onclick="drop()" class="dropbtn">Challenges</button>
+  <div id="myDropdown" class="dropdown-content">
+    <button class="boardsize s4x4" onclick="boardsize4()">4x4</button>
+    <button class="boardsize s5x5" onclick="boardsize5()">5x5</button>
+    <button class="boardsize s6x6" onclick="boardsize6()">6x6</button>
+    <button class="boardsize s7x7" onclick="boardsize7()">7x7</button>
+    <button class="boardsize s8x8" onclick="boardsize8()">8x8</button>
+    <button class="boardsize s9x9" onclick="boardsize9()">9x9</button>
+    <button class="boardsize s10x10" onclick="boardsize10()">10x10</button>
+
+  </div>
+</div>
+<span id="countdown"></span><span id="ss"> second</span><span id="plural">s</span>
+<button class="leaderBoard" onClick="displayLeaderBoard()">Leaderboard</button>
+<div class="center">
+	<div class="top3">
+		<div class="two item">
+			<div class="pos_2">
+			<div class="name">
+        </div>
+        <div class="point"></div>
+        </div>
+        </div>
+      <div class="one item">
+          <div class="pos_1">
+          <div class="name">
+            </div>
+            <div class="point"></div>
+            </div>
+            </div>  
+            <div class="two item">
+              <div class="pos_3">
+              <div class="name">
+                </div>
+                <div class="point"></div>
+                </div>
+                </div>
+                </div>
+		
+  <div class="list">
+		<div class="item">
+			<div class="pos1">
+			<div class="name">
+        </div>
+        <div class="score"></div>
+        </div>
+        </div>  
+        <div class="item">
+          <div class="pos2">
+          <div class="name">
+            </div>
+            <div class="score"></div>
+            </div>
+            </div> 
+            <div class="item">
+              <div class="pos3">
+              <div class="name">
+                </div>
+                <div class="score"></div>
+                </div>
+                </div> 
+                <div class="item">
+                  <div class="pos4">
+                  <div class="name">
+                    </div>
+                    <div class="score"></div>
+                    </div>
+                    </div> 
+                    <div class="item">
+                      <div class="pos5">
+                      <div class="name">
+                        </div>
+                        <div class="score"></div>
+                        </div>
+                        </div>
+                        
+        </div>
+</div>	
+</div>
+
 <div id="SpinCircle">
  <div id='mainCircle' class="mainCircle">
      <div id="box" class="box">
@@ -143,10 +224,10 @@ Tic Tac Toe
      </div>
      <button class="spin" onclick="handleSpin()">SPIN</button>
  </div>
-
-<!-- <div id="status"></div>
+</div> 
+ <div id="status"></div>
 <button id="goBack" type="button" class="btn btn-outline-primary">Back to Main Menu</button>
-</div>  -->
+ 
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
