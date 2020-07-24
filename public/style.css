@@ -187,20 +187,28 @@ width:350px;
   }
   .endgame{
   display:none;
-  width:350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: -webkit-linear-gradient(top, #3a404d, #181c26);
+  background: linear-gradient(to bottom, #3a404d, #181c26);
+  border-radius: 10px;
+  box-shadow: 0 7px 30px rgba(62, 9, 11, 0.3);
+  text-align:center;
+  width:200px;
   background-color:white;
   opacity:0.8;
-  
-  
   position:absolute;
-  /*left:50%;*/
-  margin: auto 20% auto;
-  padding-top:50px;
-  padding-bottom:50px;
-  text-align:center;
-  border-radius:5px;
-  color:black;
-  font-size:2em;
+  padding-top:10px;
+  padding-bottom:10px;
+ 
+  /* border-radius:5px; */
+  color:white;
+  font-size:15px;
   }
   .row1{
   display:none;
@@ -260,7 +268,8 @@ width:350px;
   }
   
   .screen{
-      text-align: right;
+          padding-left: 10px;
+      text-align: left;
   color:white;
   font-size: 15px;
   }
