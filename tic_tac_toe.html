@@ -27,13 +27,6 @@ Tic Tac Toe
   <button onclick="drop()" class="dropbtn">Challenges</button>
   <div id="myDropdown" class="dropdown-content">
     <button class="boardsize s4x4" onclick="boardsize4()">4x4</button>
-    <button class="boardsize s5x5" onclick="boardsize5()">5x5</button>
-    <button class="boardsize s6x6" onclick="boardsize6()">6x6</button>
-    <button class="boardsize s7x7" onclick="boardsize7()">7x7</button>
-    <button class="boardsize s8x8" onclick="boardsize8()">8x8</button>
-    <button class="boardsize s9x9" onclick="boardsize9()">9x9</button>
-    <button class="boardsize s10x10" onclick="boardsize10()">10x10</button>
-
   </div>
 </div>
 <!-- <img src="https://giphy.com/gifs/i9j7a4aUidyhy/html5"> -->
@@ -43,8 +36,6 @@ Tic Tac Toe
 </div>
 
 <div id="side">
-
-
 <fieldset  class="nameInput">
 <h1>Who's playing??</h1>
 <input  autocomplete="off" id="Player1Name" type="text" placeholder="Player1 Name" required>
@@ -53,22 +44,19 @@ Tic Tac Toe
 <button type="button" id="submitName">Play!!</button>
 </span>
 </fieldset>
-
-
-
 <div class="row1">
 <div class="column">
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-info active">
+  <label id="level1Label" class="btn btn-info active">
     <input type="radio" name="options" id="levelOne" checked> LEVEL 1
   </label>
-  <label class="btn btn-info">
+  <label id="level2Label" class="btn btn-info">
     <input type="radio" name="options" id="levelTwo"> LEVEL 2
   </label>
-  <label class="btn btn-info">
+  <label id="level3Label" class="btn btn-info">
     <input type="radio" name="options" id="levelThree"> LEVEL 3
   </label>
-  <label class="btn btn-info">
+  <label id="level4Label" class="btn btn-info">
     <input type="radio" name="options" id="levelFour"> LEVEL 4
   </label><!-- 
   <div class="btn-group" role="group" aria-label="Basic example">
@@ -106,7 +94,7 @@ Tic Tac Toe
 
 
 <div id="board">
-<table id="TTT_Board">
+<table class="TTT_Board">
 <tr>
 
 <td class="cell" id="0">

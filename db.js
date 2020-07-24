@@ -3,7 +3,7 @@ const ObjectID=require('mongodb').ObjectID;
 const dbname="leaderBoard_mongodb";
 const url=process.env.MONGODB_URI||"mongodb://localhost:27017/";
 
-const mongoOptions={useNewUrlParser:true};
+const mongoOptions={useNewUrlParser:true, useUnifiedTopology: true };
 const state={
     db:null
 };
