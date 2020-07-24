@@ -1,33 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Tic Tac Toe Board</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-	<div class="container">
-
-		<h1>TIC-TAC-TOE</h1>
-		<table>
-			<tr>
-				<td id="0" class="cell"></td>
-				<td id="1" class="cell"></td>
-				<td id="cell_2" class="cell"></td>
-			</tr>
-			<tr>
-				<td id="3" class="cell"></td>
-				<td id="4" class="cell"></td>
-				<td id="5" class="cell"></td>
-			</tr>
-			<tr>
-				<td id="6" class="cell"></td>
-				<td id="7" class="cell"></td>
-				<td id="8" class="cell"></td>
-			</tr>
-		</table>
-		<button onClick="restart()"><strong>RESET</strong></button>
-		<h2 class="WINNER"></h2>
-	</div>
-	<script type="text/javascript" src="game.js"></script>
-</body>
-</html>
+<div class="leaderboard">
+  <h1>
+    <svg class="ico-cup">
+      <use xlink:href="#cup"></use>
+    </svg>
+    Most active players
+  </h1>
+  <ol>
+    <li>
+      <div class="pos1">
+        <mark>
+          <div class="name">
+            </div></mark>
+            <small><div class="score"></div></small>
+            </div>
+    </li>
+    <li>
+      <div class="pos2">
+      <mark>
+        <div class="name">
+          </div></mark>
+          <small><div class="score"></div></small>
+          </div>
+      
+    </li>
+    <li>
+      <div class="pos3">
+        <mark>
+          <div class="name">
+            </div></mark>
+            <small><div class="score"></div></small>
+            </div>
+    </li>
+    <li>
+      <div class="pos4">
+        <mark>
+          <div class="name">
+            </div></mark>
+            <small><div class="score"></div></small>
+            </div>
+    </li>
+    <li>
+      <div class="pos5">
+        <mark>
+          <div class="name">
+            </div></mark>
+            <small><div class="score"></div></small>
+            </div>
+    </li>
+  </ol>
+</div>
+</div>
