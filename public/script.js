@@ -1,6 +1,7 @@
 var boardList;
 var levelSelected='levelOne';
 var gameType;
+var boardSize=9;
 const player="O";
 var secondPlayer;
 var currPlayer;
@@ -16,6 +17,7 @@ var Currcell;
 var Player1Name;
 var PlayerList=[];
 var isCompete=false;
+var isChallenge=false;
 var Player2Name;
 var hintNum=0;
 var hintA=0;
@@ -23,7 +25,19 @@ var currWin;
 var hintB=0;
 var pointsScored=100;
 var displayBestTime;
-const toWinList=[
+const toWinList4=[
+[0,1,2,3],
+[4,5,6,7],
+[8,9,10,11],
+[12,13,14,15],
+[0,4,8,12],
+[1,5,9,13],
+[2,6,10,14],
+[3,7,11,15],
+[0,5,10,15],
+[3,6,9,12]
+];
+const toWinList3=[
 [0,1,2],
 [3,4,5],
 [6,7,8],
@@ -33,6 +47,7 @@ const toWinList=[
 [0,4,8],
 [6,4,2]
 ];
+
 $(function(){
     $(".soundOption ").on('click',function(){
         isSoundEnabled=!isSoundEnabled;
@@ -80,6 +95,7 @@ $(function(){
                     alert("Enter the name(s) to play!!");
                 }
             }else{
+               
                 Player1Name=$('#Player1Name').val();
                 isnameEntered=true;
                 Replay();
@@ -98,6 +114,11 @@ $(function(){
 $('.chooseType button').on('click',function(){
 gameType=$(this).attr('id');
 hideMainMenuOptions();
+
+    $('#level4Label').css({display:'inline-block'});
+    $('#level3Label').css({display:'inline-block'});
+
+   
 //if dual player mode selected
 if(gameType=="againstPlayer"){
    $('.nameInput').css({
@@ -116,22 +137,7 @@ $('#restartGame').css({
 }
 // if Play against computer or Compete mode is selected 
 else{
-    $('.nameInput').css({
-        display:'block'
-    });
-    $('#Player2Name').css({
-        display:'none',
-    });
-    $(".row1").css({
-        display:'block',
-    });
-    $('#restartGame').css({
-        display:'block',
-    });
-    isTwoMode=false;
-    currPlayer=player;
-    secondPlayer=computer;
-    restartGame();
+   computerMode();
 }
 });
 $('.options button').on('click',function(){
@@ -139,6 +145,10 @@ $('.options button').on('click',function(){
     restartGame();
     }else if($(this).attr('id')=="mainMenu"){
         displayMainMenuOptions();
+        if(isChallenge){
+            $('#TTT_Board1').remove();
+        }
+        isChallenge=false;
     }else{
         //hint
         hintNum++;
@@ -170,8 +180,27 @@ $('.options button').on('click',function(){
         }
     }
 });
+//To handle clicks of levels for AI mode and compete mode
+    $('.column input').on('click',function (){
+        levelSelected=$(this).attr('id');
+        // $(".row1 input").css({
+        //     'background-color':'white'
+        // });
+        // $(this).css({
+        //     'background-color':'red'
+        // });
+      
+        isReplay=false;
+        whoWon=player;
+       
+        checkNameEntered();
+          resetTimer();
+       });
+});
+
 //To display main menu options
 function displayMainMenuOptions(){
+    boardSize=9;
     $(".chooseGame").css({
         display:'block',
     });
@@ -181,7 +210,7 @@ function displayMainMenuOptions(){
     $(".row1").css({
         display:'none',
     });
-    $("#TTT_Board").css({
+    $(".TTT_Board").css({
         display:'none',
     });
     $(".endgame").css({
@@ -210,31 +239,13 @@ function hideMainMenuOptions(){
     $('#hint').css({
         display:'none',
     });
-    $('#TTT_Board').css({
+    $('.TTT_Board').css({
         display:'block',
     });
     $(".clock_container").css({
         display:'block',
     });
 }
-
-//To handle clicks of levels for AI mode and compete mode
-    $('.column input').on('click',function (){
-        levelSelected=$(this).attr('id');
-        // $(".row1 input").css({
-        //     'background-color':'white'
-        // });
-        // $(this).css({
-        //     'background-color':'red'
-        // });
-      
-        isReplay=false;
-        whoWon=player;
-       
-        checkNameEntered();
-          resetTimer();
-       });
-});
 
 //To replay with the same username
 function Replay(){
@@ -252,7 +263,25 @@ display:'block'
     resetTimer();
     checkNameEntered();
    }
-
+//For compete and challenges
+function computerMode(){
+    $('.nameInput').css({
+        display:'block'
+    });
+    $('#Player2Name').css({
+        display:'none',
+    });
+    $(".row1").css({
+        display:'block',
+    });
+    $('#restartGame').css({
+        display:'block',
+    });
+    isTwoMode=false;
+    currPlayer=player;
+    secondPlayer=computer;
+    restartGame();
+}
 //To restart the game in the same mode but with different username   
 function restartGame(){
     resetTimer();
@@ -268,6 +297,7 @@ function restartGame(){
     isnameEntered=false;
     isReplay=false;
     //isSpin=true;
+
     levelSelected='levelOne';
     $(".row1 button").css({
         'background-color':'white'
@@ -278,6 +308,12 @@ function restartGame(){
     $('#hint').css({
         display:'none'
     });
+if(isChallenge){
+    $('#level4Label').css({display:'none'});
+    $('#level3Label').css({display:'none'});
+  
+}    
+   
     $(".cell").each(function(i){
         $(".cell")[i].removeEventListener('click',cellClick,false);});
     checkNameEntered();
@@ -296,7 +332,6 @@ function checkNameEntered(){
 function startGame(){
 displayBestTime=null;
 isSpin=true;
-
 pointsScored=-1;
     $(".endgame").css({
         display:'none',
@@ -313,7 +348,8 @@ pointsScored=-1;
         });
     }
     hintNum=0;hintA=0;hintB=0;
-    boardList=Array.from(Array(9).keys());
+    boardList=Array.from(Array(boardSize).keys());
+    console.log('boardlist length'+boardList);
     $(".cell").each(function(i){
         $(".cell")[i].innerHTML='';
          $(this).css({
@@ -328,12 +364,13 @@ function beginPlaying(){
     $(".cell").each(function(i){
         $(".cell")[i].addEventListener('click',cellClick,false);
     });
+
     if(gameType=='againstPlayer'){
         $('#hint').css({
             display:'block'
         });
    }
-
+   
    if(gameType=="compete"){
     fetch(`/${Player1Name}`,{method : "get"}).then((response)=>{
         return response.json();
@@ -352,13 +389,20 @@ function beginPlaying(){
 }
 
 //When a particula cell in the TTT board is clicked
-function cellClick(cell){
-   if(typeof boardList[cell.target.id]=='number'){
-    Currcell=cell.target.id;
-    if(emptycells().length==9){
+function cellClick(cells){
+    console.log('clicked'+cells.target.id);
+    var cellid;
+    if(isChallenge){
+cellid=cells.target.id.substr(5);
+    }else{
+        cellid=cells.target.id;
+    }
+   if(typeof boardList[cellid]=='number'){
+    Currcell=cellid;
+    if(emptycells().length==boardSize){
         startTimer();
     }
-    gameTurn(cell.target.id,currPlayer);
+    gameTurn(cellid,currPlayer);
    if(($(".endgame").css('display')=='none')){
     if(!checkDraw()){
         if($(".endgame").css('display')=='none'){
@@ -383,12 +427,16 @@ function cellClick(cell){
 
 //Place the cell token
 function gameTurn(cellID,player){
+    console.log('gameturn called'+cellID);
+    if(isChallenge){
+        $('#cell_'+cellID).html(player);
+    }else{
+        $('#'+cellID).html(player);
+    }
     boardList[cellID]=player;
-    $('#'+cellID).html(player);
     if(isSoundEnabled){
         PlayAudio('balldrop');
     }
-    
     let gameWon=checkWin(boardList,player);
     if(gameWon) gameOver(gameWon)
 }
@@ -396,20 +444,30 @@ function gameTurn(cellID,player){
 //Check if the player has won
 function checkWin(board,player){
     let gameWon=null;
-    for(var i in toWinList){
-    if(boardList[toWinList[i][0]]==player&&boardList[toWinList[i][1]]==player&&boardList[toWinList[i][2]]==player){
-        gameWon={player:player,winCells:toWinList[i]}
-    }
-    }
+    if(isChallenge){
+        for(var i in toWinList4){
+            if(boardList[toWinList4[i][0]]==player&&boardList[toWinList4[i][1]]==player&&boardList[toWinList4[i][2]]==player&&boardList[toWinList4[i][3]]==player){
+                gameWon={player:player,winCells:toWinList4[i]}
+            }
+        }}else{
+            for(var i in toWinList3){
+            if(boardList[toWinList3[i][0]]==player&&boardList[toWinList3[i][1]]==player&&boardList[toWinList3[i][2]]==player){
+                gameWon={player:player,winCells:toWinList3[i]}
+            }
+        }
+        }
     return gameWon;
 }
 
 //Check if game is over
 function gameOver(gameWon){
     for(var i in gameWon.winCells){
-        $('#'+gameWon.winCells[i]).css({
-            'background-color':gameWon.player==player?"black":"black",
-        });   
+        if(!isChallenge){
+            $('#'+gameWon.winCells[i]).css({
+                'background-color':gameWon.player==player?"black":"black",
+            }); 
+        }
+         
     }
     $(".cell").each(function(i){
         $(".cell")[i].removeEventListener('click',cellClick,false);});
@@ -572,7 +630,7 @@ function bestMove(){
 //Function to obtain possible cell if levelone
 function getRandomCell(){
     var indexEmptyCells=[];
-    for(var i=0;i<9;i++){
+    for(var i=0;i<boardSize;i++){
         if(i!=Currcell){
             if(boardList[i]!="X"&&boardList[i]!="O"){
                 indexEmptyCells.push(i);
@@ -616,10 +674,13 @@ function emptycells(){
 function checkDraw(){
     console.log("checkdraw called");
     if(emptycells().length==0){
+      
         $(".cell").each(function(i){
-            $(this).css({
-                'background-color':'black',
-            });
+            if(!isChallenge){
+                $(this).css({
+                    'background-color':'black',
+                }); 
+            }
             $(".cell")[i].removeEventListener('click',cellClick,false);});
                 displayWinner('Tie');
                 return true;
@@ -707,6 +768,7 @@ sound.play();
 }
 //Function to obtain the computer move if levelselected=2,3,4 
 function minimax(playerTile){
+    console.log('minimax called');
         var Secondplayer=playerTile=='X'?'O':'X';
         var val=1000;
         var x,temp;
@@ -740,8 +802,8 @@ function minimax(playerTile){
               return score=0;
           }
           score=-1000;
-     
-          if(levelSelected=='levelTwo'&&depth<1||levelSelected=='levelThree'&&depth<2||levelSelected=='levelFour'||hintNum!=0){
+          console.log(levelSelected);
+          if(levelSelected=='levelTwo'&&depth<1||levelSelected=='levelThree'&&depth<2||levelSelected=='levelFour'&&depth<3||hintNum!=0){
          for(var i=0;i<boardList.length;i++){
              if(boardList[i]!="X"&&boardList[i]!="O"){
                  temp=boardList[i];
@@ -776,7 +838,6 @@ function minimax(playerTile){
                 boardList[i]=temp;
              }
           }
-        
           return score;
      }    
 
@@ -867,7 +928,12 @@ spinTile="300";
 }else if(absDeg>=22.5){
     spinTile="75";
 }
-pointsScored=parseInt(spinTile);
+if(isChallenge){
+    pointsScored=parseInt(spinTile)*2;
+}else{
+    pointsScored=parseInt(spinTile);
+}
+
 console.log(pointsScored);
 setTimeout(function(){
     document.getElementById('goBack').style.display="block";
@@ -878,7 +944,12 @@ setTimeout(function(){
     if(spinTile=="0"){
         document.getElementById('status').innerHTML="Oops!! Better Luck Next Time";
     }else{
-        document.getElementById('status').innerHTML="Yayy!! You've earned "+spinTile+" points";
+       if(isChallenge){
+        document.getElementById('status').innerHTML="Double Point !! "+pointsScored+" points :)";
+       }else{
+        document.getElementById('status').innerHTML="Yayy!! You've earned "+pointsScored+" points";
+       }
+        
     }
 },5000);
 }
@@ -913,27 +984,72 @@ function drop() {
   }
   var challengetime;
 function boardsize4(){
+    isChallenge=true;
     challengetime=10;
-}
-function boardsize5(){
-    challengetime=15;
-}
-function boardsize6(){
-    challengetime=25;
-}
-function boardsize7(){
-    challengetime=30;
-}
-function boardsize8(){
-    challengetime=40;
-}
-function boardsize9(){
-    challengetime=50;
-}
-function boardsize10(){
-    challengetime=60;
+    boardSize=16;
+    makeBoard(4);
+
+   
 }
 
+//function to make the TTT_Board
+function makeBoard(size){
+    hideMainMenuOptions();
+    gameType='compete';
+    computerMode();
+    $('#levelThree').css({display:'none'});
+    $('#levelFour').css({display:'none'});
+$('.TTT_Board').css({
+    display:'none'
+});
+$('#TTT_Board1').remove();
+var table = document.createElement('TABLE');
+table.border='1';
+table.id='TTT_Board1';
+var tableBody = document.createElement('TBODY');
+table.appendChild(tableBody);
+  var cellid=0;
+for (var i=0; i<size; i++){
+   var tr = document.createElement('TR');
+   tableBody.appendChild(tr);
+   
+   for (var j=0; j<size; j++){
+       var td = document.createElement('TD');
+       //td.appendChild(document.createTextNode("Cell " + i + "," + j));
+cellid++;
+td.setAttribute('id','cell_'+(cellid-1).toString());
+tr.appendChild(td);
+   }
+}
+var myTableDiv = document.getElementById("board");
+myTableDiv.appendChild(table);
+
+$('#TTT_Board1').css({
+    backgroundColor:'white',
+   ' border-collapse':'collapse', 
+   'margin': 'auto -5% auto',
+  'table-layout': 'fixed',
+   'width':'350px', 
+});
+$('#TTT_Board1 td').css({
+    'border':'5px solid black',
+    'height':'60px',
+    'width':'60px',
+    'font-size':'25px',
+    'color':'brown',
+    'text-align':'center',
+    'cursor':'pointer'
+});
+$('#TTT_Board1 td').addClass('cell');
+$('#TTT_Board1 td').hover(function(){
+    $(this).css({
+        backgroundColor:'#E0E0E0',
+    })},
+    function(){$(this).css({
+        backgroundColor:'white'
+    })
+});
+}
   // Close the dropdown menu if the user clicks outside of it
   window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
@@ -944,25 +1060,19 @@ function boardsize10(){
         if (openDropdown.classList.contains('show')) {
             
     document.querySelector(".s4x4").addEventListener("click", boardsize4);
-    document.querySelector(".s5x5").addEventListener("click", boardsize5);
-    document.querySelector(".s6x6").addEventListener("click", boardsize6);
-    document.querySelector(".s7x7").addEventListener("click", boardsize7);
-    document.querySelector(".s8x8").addEventListener("click", boardsize8);
-    document.querySelector(".s9x9").addEventListener("click", boardsize9);
-    document.querySelector(".s10x10").addEventListener("click", boardsize10);
           openDropdown.classList.remove('show');
         }
       }
     }
   }
-//countdown timer
+// //countdown timer
 
-var countdown = setInterval(function(){
-    challengetime--;
-    (challengetime == 1) ? document.getElementById("plural").textContent = "" : document.getElementById("plural").textContent = "s";
-    document.getElementById("countdown").textContent = challengetime;
-    if (challengetime <= 0) clearInterval(countdown);
-},1000);
+// var countdown = setInterval(function(){
+//     challengetime--;
+//     (challengetime == 1) ? document.getElementById("plural").textContent = "" : document.getElementById("plural").textContent = "s";
+//     document.getElementById("countdown").textContent = challengetime;
+//     if (challengetime <= 0) clearInterval(countdown);
+// },1000);
 
 //   //function for leaderboard
 //   function displayLeaderBoard(){

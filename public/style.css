@@ -16,7 +16,7 @@
         height: 100vh;
         background-size: cover;
   }
-   #TTT_Board,#container,td{
+   .TTT_Board,#container,td{
     box-sizing: border-box;
     border-radius: 10px;
     /*box-shadow:0 1px 4px rgba(0,0,0,0.5);*/
@@ -53,16 +53,16 @@
     }
     #board{
         position: relative;
-       margin: auto 15% auto;  
+       margin: auto 25% auto;  
         text-align: center;
-    
+        
     }
     
     table{
-     border-collapse:collapse; 
-      margin: auto; 
+    border-collapse:collapse; 
+    margin: auto; 
     table-layout: fixed;
-     width:450px; 
+    width:450px; 
     }
   @media (max-width: 575px) {
     #container {
@@ -99,7 +99,7 @@ width:350px;
       width: 33.33%;
   } 
    */
-  #TTT_Board{
+  .TTT_Board{
   display:none;
   }
   
@@ -467,8 +467,9 @@ box-shadow: none;
 outline: none;
 box-shadow: none;
 }  
+
 .leaderBoard {
-    display: none;
+display: none;
 }
 
 /*  
