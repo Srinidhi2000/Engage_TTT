@@ -10,6 +10,7 @@ Tic Tac Toe
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
 <body>
   <script src="/script.js"></script>
@@ -26,7 +27,7 @@ Tic Tac Toe
 <div class="dropdown">
   <button onclick="drop()" class="dropbtn">Challenges</button>
   <div id="myDropdown" class="dropdown-content">
-    <button class="boardsize s4x4" onclick="boardsize4()">4x4</button>
+    <button id="4x4Button" class="boardsize s4x4" onclick="boardsize4()">4x4</button>
   </div>
 </div>
 <!-- <img src="https://giphy.com/gifs/i9j7a4aUidyhy/html5"> -->
@@ -80,6 +81,7 @@ Tic Tac Toe
 <div class="playerOptions"><button id="mainMenu">Main Menu</button></div>
 </div>
 </div>
+<button class="leaderBoard" onClick="displayLeaderBoard()">Leaderboard</button>
 
 
 
@@ -128,73 +130,61 @@ Tic Tac Toe
 </div>
 
 <span id="countdown"></span><span id="ss"> second</span><span id="plural">s</span>
-<button class="leaderBoard" onClick="displayLeaderBoard()">Leaderboard</button>
-<div class="center">
-	<div class="top3">
-		<div class="two item">
-			<div class="pos_2">
-			<div class="name">
-        </div>
-        <div class="point"></div>
-        </div>
-        </div>
-      <div class="one item">
-          <div class="pos_1">
-          <div class="name">
-            </div>
-            <div class="point"></div>
-            </div>
-            </div>  
-            <div class="two item">
-              <div class="pos_3">
-              <div class="name">
-                </div>
-                <div class="point"></div>
-                </div>
-                </div>
-                </div>
-		
-  <div class="list">
-		<div class="item">
-			<div class="pos1">
-			<div class="name">
-        </div>
-        <div class="score"></div>
-        </div>
-        </div>  
-        <div class="item">
-          <div class="pos2">
-          <div class="name">
-            </div>
-            <div class="score"></div>
-            </div>
-            </div> 
-            <div class="item">
-              <div class="pos3">
-              <div class="name">
-                </div>
-                <div class="score"></div>
-                </div>
-                </div> 
-                <div class="item">
-                  <div class="pos4">
-                  <div class="name">
-                    </div>
-                    <div class="score"></div>
-                    </div>
-                    </div> 
-                    <div class="item">
-                      <div class="pos5">
-                      <div class="name">
-                        </div>
-                        <div class="score"></div>
-                        </div>
-                        </div>
-                        
-        </div>
-</div>	
-</div>
 
+<div class='displayleaderboard'>
+<div class="leaderboard">
+  <h1>
+    <svg class="ico-cup">
+      <use xlink:href="#cup"></use>
+    </svg>
+    Most active players
+  </h1>
+  <ol>
+    <li>
+      <div class="pos1">
+        <mark>
+          <div class="name">
+            </div></mark>
+            <small><div class="score"></div></small>
+            </div>
+    </li>
+    <li>
+      <div class="pos2">
+      <mark>
+        <div class="name">
+          </div></mark>
+          <small><div class="score"></div></small>
+          </div>
+      
+    </li>
+    <li>
+      <div class="pos3">
+        <mark>
+          <div class="name">
+            </div></mark>
+            <small><div class="score"></div></small>
+            </div>
+    </li>
+    <li>
+      <div class="pos4">
+        <mark>
+          <div class="name">
+            </div></mark>
+            <small><div class="score"></div></small>
+            </div>
+    </li>
+    <li>
+      <div class="pos5">
+        <mark>
+          <div class="name">
+            </div></mark>
+            <small><div class="score"></div></small>
+            </div>
+    </li>
+  </ol>
+</div>
+</div>
+</div>
 <div id="SpinCircle">
  <div id='mainCircle' class="mainCircle">
      <div id="box" class="box">
