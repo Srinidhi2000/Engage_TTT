@@ -1046,6 +1046,12 @@ $('#TTT_Board1 td').css({
    // 'text-align':'center',
     'cursor':'pointer'
 });
+var x = window.matchMedia("(max-width: 700px)");
+if (x.matches){
+    $('#TTT_Board1').css({
+       'width':'300px', 
+    });    
+}
 $('#TTT_Board1 td').addClass('cell');
 $('#TTT_Board1 td').hover(function(){
     $(this).css({
