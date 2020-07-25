@@ -223,6 +223,9 @@ function displayMainMenuOptions(){
     $('.nameInput').css({
         display:'none'
     });    
+    $('.leaderBoard').css({
+        display:'none'
+    }); 
 }
 
 //To hide main menu options when a particular mode is clicked
