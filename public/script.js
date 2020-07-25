@@ -1054,9 +1054,8 @@ if (x.matches){
     $(body.keyboard).css({
         height: 'calc(100% + 500px)'
     }); 
-      
-    
 }
+
 $('#TTT_Board1 td').addClass('cell');
 $('#TTT_Board1 td').hover(function(){
     $(this).css({
@@ -1082,6 +1081,7 @@ $('#TTT_Board1 td').hover(function(){
       }
     }
   }
+
 // //countdown timer
 
 // var countdown = setInterval(function(){
@@ -1191,3 +1191,15 @@ function compare(a, b){
         // document.querySelector('.pos_3 .point').innerHTML=usersList[2].points;
     });
   }
+document.body.addEventListener("focus", event => {
+    const target = event.target;
+    switch (target.tagName) {
+        case "INPUT":
+        case "TEXTAREA":
+        case "SELECT":
+            document.body.classList.add("keyboard");
+    }
+}, true); 
+document.body.addEventListener("blur", () => {
+    document.body.classList.remove("keyboard");
+}, true); 
