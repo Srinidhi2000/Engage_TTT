@@ -44,9 +44,7 @@
       margin: 20px auto;
     }
   }
-  body.keyboard {
-    height: calc(100% + 500px); 
-}
+ 
   td{
     border:5px solid black;
     height:100px;
@@ -76,7 +74,9 @@
     #container {
       margin-top: 0px;
     }
-   
+    body.keyboard {
+      height: calc(100% + 500px); 
+  }
   #board{
     position: relative;
    margin: auto 5% auto;  
