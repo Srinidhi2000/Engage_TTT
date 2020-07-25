@@ -102,6 +102,7 @@ $(function(){
                 $('#submitName').css({
                     display:'none'
                 });
+                $('.leaderBoard').css({display:'block'});
                 $('#Player1Name').attr('disabled','true');
                 $('#Player2Name').attr('disabled','true');
             }
@@ -138,7 +139,7 @@ $('#restartGame').css({
 // if Play against computer or Compete mode is selected 
 else{
    computerMode();
-   $('.leaderBoard').css({display:'block'});
+   
 }
 });
 $('.options button').on('click',function(){
@@ -902,6 +903,7 @@ $('#millis').html(milli);
 var cnt=false;
 var absDeg;
 function handleSpin(){
+    $('#container').css({display:'none'});
 if(!cnt){var x=1024;
     var y=9999;
     var deg=Math.floor(Math.random()*(x-y))+y;
@@ -1031,7 +1033,7 @@ myTableDiv.appendChild(table);
 $('#TTT_Board1').css({
     backgroundColor:'white',
    ' border-collapse':'collapse', 
-   'margin': 'auto -5% auto',
+   'margin': 'auto',
   'table-layout': 'fixed',
    'width':'350px', 
 });
@@ -1041,7 +1043,7 @@ $('#TTT_Board1 td').css({
     'width':'60px',
     'font-size':'25px',
     'color':'brown',
-    'text-align':'center',
+   // 'text-align':'center',
     'cursor':'pointer'
 });
 $('#TTT_Board1 td').addClass('cell');
@@ -1119,12 +1121,13 @@ function compare(a, b){
     // if the target of the click isn't the container nor a descendant of the container
     if (!container.is(e.target) && container.has(e.target).length === 0) 
     {   
-       
         container.hide();
+        document.querySelector('#container').style.display='block';
     }
 });
   //function for leaderboard
   function displayLeaderBoard(){
+    document.querySelector('#container').style.display='none';
     var usersList=[];
     var play1score,play1points;
     var display="display_leaderboard";
@@ -1142,20 +1145,32 @@ function compare(a, b){
         }
         document.querySelector('.displayleaderboard').style.display='block';
         usersList.sort(function(a,b){return (b.score-a.score);});
+        for(var i=0;i<data.length;i++){
+          
+            if(usersList[i].Name==Player1Name){
+                index=i+1;
+                break;
+                     }           
+        }
         document.querySelector('.pos1 .name').innerHTML=usersList[0].Name;
-        document.querySelector('.pos1 .score').innerHTML=usersList[0].score+usersList[0].points;
+        document.querySelector('.pos1 .score').innerHTML="Score: "+usersList[0].score;
+        document.querySelector('.pos1 .point').innerHTML="Points: "+usersList[0].points;    
         document.querySelector('.pos2 .name').innerHTML=usersList[1].Name;
-        document.querySelector('.pos2 .score').innerHTML=usersList[1].score;
+        document.querySelector('.pos2 .point').innerHTML="Points: "+usersList[1].points; 
+        document.querySelector('.pos2 .score').innerHTML="Score: "+usersList[1].score;
         document.querySelector('.pos3 .name').innerHTML=usersList[2].Name;
-        document.querySelector('.pos3 .score').innerHTML=usersList[2].score;
+        document.querySelector('.pos3 .point').innerHTML="Points: "+usersList[2].points; 
+        document.querySelector('.pos3 .score').innerHTML="Score: "+usersList[2].score;
         document.querySelector('.pos4 .name').innerHTML=usersList[3].Name;
-        document.querySelector('.pos4 .score').innerHTML=usersList[3].score;
+        document.querySelector('.pos4 .point').innerHTML="Points: "+usersList[3].points; 
+        document.querySelector('.pos4 .score').innerHTML="Score: "+usersList[3].score;
         document.querySelector('.pos5 .name').innerHTML=usersList[4].Name;
-        document.querySelector('.pos5 .score').innerHTML=usersList[4].score;
-        document.querySelector('.pos6 .name').innerHTML=play1score;
-        document.querySelector('.pos6 .score').innerHTML=play1points;
-         document.querySelector('.pos7 .name').innerHTML=usersList[4].Name;
-        document.querySelector('.pos7 .score').innerHTML=usersList[4].score;
+        document.querySelector('.pos5 .point').innerHTML="Points: "+usersList[4].points;
+        document.querySelector('.pos5 .score').innerHTML="Score: "+usersList[4].score;
+         document.querySelector('.pos7 .rank').innerHTML=index;
+         document.querySelector('.pos7 .name').innerHTML="YOU!!";
+         document.querySelector('.pos7 .point').innerHTML="Points: "+play1points; 
+        document.querySelector('.pos7 .score').innerHTML="Score: "+play1score;
         // usersList.sort(comparep);
         // document.querySelector('.pos_1 .name').innerHTML=usersList[0].Name;
         // document.querySelector('.pos_1 .point').innerHTML=usersList[0].points;
