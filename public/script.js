@@ -1051,6 +1051,11 @@ if (x.matches){
     $('#TTT_Board1').css({
        'width':'300px', 
     });    
+    $(body.keyboard).css({
+        height: 'calc(100% + 500px)'
+    }); 
+      
+    
 }
 $('#TTT_Board1 td').addClass('cell');
 $('#TTT_Board1 td').hover(function(){
