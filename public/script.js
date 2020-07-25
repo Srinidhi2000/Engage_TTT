@@ -1052,7 +1052,7 @@ if (x.matches){
        'width':'300px', 
     });    
     $(body.keyboard).css({
-        height: 'calc(100% + 500px)'
+        height: 'calc(100% + 250px)'
     }); 
 }
 
