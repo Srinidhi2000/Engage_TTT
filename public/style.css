@@ -1,15 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:400,900&display=swap');
-/* html {
-    box-sizing: border-box;
-  
-  } */
   body{
         background-color: #eaeaea;
-         /* position: relative; */
+      
         background-image:  url('/bg1.png');
-        /* &:before{
-          position: absolute;
-         } */
         display: flex;
         justify-content:center;
         align-items: center;
@@ -19,7 +12,6 @@
    .TTT_Board,#container,td{
     box-sizing: border-box;
     border-radius: 10px;
-    /*box-shadow:0 1px 4px rgba(0,0,0,0.5);*/
    }
   body, html{
   height:100%;
@@ -84,7 +76,6 @@
 }
 
 table{
-/* border-collapse:collapse; */
 margin: auto;
 table-layout: fixed;
 width:350px;
@@ -101,11 +92,7 @@ width:350px;
       width: 400px;
       height: 400px;
   }
-   /* .cell{
-      height: 33.33%;
-      width: 33.33%;
-  } 
-   */
+   
   .TTT_Board{
   display:none;
   }
@@ -235,9 +222,7 @@ width:350px;
       text-align: center;
   
   }
-  /* #soundOption{
-    text-align: center;
-  } */
+  
   .chooseGame button{
   background-color:#0c2c5e ;
   margin: 10px 20px;
@@ -258,12 +243,7 @@ width:350px;
   .options{
   display:none;
   margin: auto;}
-  /* #hint{
-    text-align: right;
-  } 
-  .leaderBoard{
-    text-align: center;
-  } */
+  
   #spinButton,#toreplay{
     position: relative;
     background-color:#a02f1c ;
@@ -295,11 +275,8 @@ width:350px;
   }
 
   .clock_container{
-  /*box-shadow:0 1px 4px rgba(0,0,0,0.5);
-  padding:15px;
-  border-radius:5px;*/
-  display:none;/*
-  background-color:orange;*/
+  
+  display:none;
   }
   
   .screen{
@@ -339,8 +316,7 @@ width:350px;
      background-color: #3b134d;
   }
   .nameInput button{
-  /*padding:7px;
-  height:40px;*/
+ 
   background-color:#3b134d ;
   margin: 10px 20px;
   color: #e2dae6;
@@ -352,29 +328,15 @@ width:350px;
       padding: 10px;
       cursor: pointer;
   
-  /*margin: 10px 20px;
-  width: 200px;
-  color: #bac8de;
-  font-size: 15px;
-  vertical-align: center;*/
+  
   }
   .nameInput button:hover{
       background-color: #724287;
   }
 
    #SpinCircle{
-    /* box-sizing: border-box;
-    border-radius: 0%;
-    padding: 0;
-    margin: 0;
-    outline: none; */
+    
     display: none;
-/* justify-content:center;
-align-items: center;
-height: 100vh;
-overflow: hidden;
-background-image: url('/bg1.png');
-background-size: cover; */
 } 
 
 .mainCircle{

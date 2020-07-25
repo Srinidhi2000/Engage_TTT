@@ -60,19 +60,12 @@ $(function(){
     $('#spinButton').on('click',function(){
         $("#container").css({
             display:'none'
-        });
-      //  $("#spinWheel").load("spinningWheel.html"); 
+        }); 
       $('#SpinCircle').css({
           display:'flex'
       });
        $('body').css({
-//         display: 'flex',
-//         'justify-content':'center',
-//         'align-items': 'center',
-//         'height': '100vh',
             overflow: 'hidden',
-// 'background-image': 'url(/bg1.png)',
-// 'background-size': 'cover'
        });
     });
   });
@@ -185,13 +178,7 @@ $('.options button').on('click',function(){
 //To handle clicks of levels for AI mode and compete mode
     $('.column input').on('click',function (){
         levelSelected=$(this).attr('id');
-        // $(".row1 input").css({
-        //     'background-color':'white'
-        // });
-        // $(this).css({
-        //     'background-color':'red'
-        // });
-      
+     
         isReplay=false;
         whoWon=player;
        
@@ -487,24 +474,10 @@ function gameOver(gameWon){
 
 //Store the data if compete mode
 function storeWinner(){
-    //winnerName,gameWn    
+       
     var isBest=false;
         var currWinner;
-        // if(gameWn.player==player){
-        //     currWinner={
-        //         Name:Player1Name,
-        //         min:m,
-        //         sec:s,
-        //         millis:ms,
-        //     };
-        // }else{
-        //      currWinner={
-        //         Name:Player2Name,
-        //         min:m,
-        //         sec:s,
-        //         millis:ms,
-        //     };
-        // }
+        
        currWinner={
                 Name:Player1Name,
                 min:m,
@@ -1043,7 +1016,6 @@ $('#TTT_Board1 td').css({
     'width':'60px',
     'font-size':'25px',
     'color':'brown',
-   // 'text-align':'center',
     'cursor':'pointer'
 });
 var x = window.matchMedia("(max-width: 700px)");
@@ -1082,29 +1054,7 @@ $('#TTT_Board1 td').hover(function(){
     }
   }
 
-// //countdown timer
 
-// var countdown = setInterval(function(){
-//     challengetime--;
-//     (challengetime == 1) ? document.getElementById("plural").textContent = "" : document.getElementById("plural").textContent = "s";
-//     document.getElementById("countdown").textContent = challengetime;
-//     if (challengetime <= 0) clearInterval(countdown);
-// },1000);
-
-//   //function for leaderboard
-//   function displayLeaderBoard(){
-//     var usersList=[];
-//     var display="display_leaderboard";
-//     fetch(`/${display}`,{method : "get"}).then((response)=>{
-//         return response.json();
-//     }).then((data)=>{
-//         console.log(data);
-//         for(var i=0;i<data.length;i++){
-//             usersList[i]=data[i];            
-//         }
-//     });
-// console.log("userlist"+usersList.length);  
-// }
 var check=[1,7,3,8,6,4,3,77,6];
 check.sort(compare);
 function compare(a, b){
@@ -1182,13 +1132,7 @@ function compare(a, b){
          document.querySelector('.pos7 .name').innerHTML="YOU!!";
          document.querySelector('.pos7 .point').innerHTML="Points: "+play1points; 
         document.querySelector('.pos7 .score').innerHTML="Score: "+play1score;
-        // usersList.sort(comparep);
-        // document.querySelector('.pos_1 .name').innerHTML=usersList[0].Name;
-        // document.querySelector('.pos_1 .point').innerHTML=usersList[0].points;
-        // document.querySelector('.pos_2 .name').innerHTML=usersList[1].Name;
-        // document.querySelector('.pos_2 .point').innerHTML=usersList[1].points;
-        // document.querySelector('.pos_3 .name').innerHTML=usersList[2].Name;
-        // document.querySelector('.pos_3 .point').innerHTML=usersList[2].points;
+      
     });
   }
 document.body.addEventListener("focus", event => {

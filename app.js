@@ -43,17 +43,6 @@ script.get('/:username',(req,res)=>{
    }
 
 });
-// script.get('/getleaderBoard',(req,res)=>{
-    
-//  db.getDB().collection(collection).find({}).toArray((err,documents)=>{
-//      if(err){
-//          console.log(err);
-//      }else{
-//          res.json(documents);
-//          console.log("entire"+documents);
-//      }
-//  });
-//  });
     
 script.put('/:id',(req,res)=>{
 const userID=req.params.id;
