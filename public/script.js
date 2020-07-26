@@ -807,7 +807,7 @@ function minimax(playerTile){
           }
           score=-1000;
           console.log(levelSelected);
-          if(levelSelected=='levelTwo'&&depth<1||levelSelected=='levelThree'&&depth<2||levelSelected=='levelFour'&&depth<3||hintNum!=0){
+          if(levelSelected=='levelTwo'&&depth<1||levelSelected=='levelThree'&&depth<2||levelSelected=='levelFour'||hintNum!=0){
          for(var i=0;i<boardList.length;i++){
              if(boardList[i]!="X"&&boardList[i]!="O"){
                  temp=boardList[i];
