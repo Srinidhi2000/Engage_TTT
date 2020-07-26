@@ -11,15 +11,17 @@ Tic Tac Toe
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<link href='https://css.gg/trophy.css' rel='stylesheet'>
 </head>
 <body>
   <script src="/script.js"></script>
 <div id="spinWheel"></div> 
   <div id="container">
+
 <div class="chooseGame">
-<div class="soundOption">
-  <i id="sound" class="fa fa-volume-up"></i>
-</div>
+  <div class="soundOption">
+    <i id="sound" class="fa fa-volume-up"></i>
+  </div>
   <div>
 <div class="chooseType"><button id="againstPlayer">Dual Player Mode</button></div>
 <div class="chooseType"><button id="compete">Enter Compete Mode</button></div>
@@ -34,6 +36,7 @@ Tic Tac Toe
 <div class="giph">
 <img src="https://media.giphy.com/media/i9j7a4aUidyhy/giphy.gif">
 </div>
+
 </div>
 
 <div id="side">
@@ -59,21 +62,11 @@ Tic Tac Toe
   </label>
   <label id="level4Label" class="btn btn-info">
     <input type="radio" name="options" id="levelFour"> LEVEL 4
-  </label><!-- 
-  <div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-secondary">1</button>
-  <button type="button" class="btn btn-secondary">2</button>
-  <button type="button" class="btn btn-secondary">3</button>
-  <button type="button" class="btn btn-secondary">4</button> -->
+  </label>
+  
 </div>
 </div>
 </div>
-<!-- <div class="row1">
-<div class="column"><button id="levelOne" >Level 1</button></div>
-<div class="column"><button id="levelTwo" >Level 2</button></div>
-<div class="column"><button id="levelThree" >Level 3</button></div>
-<div class="column"><button id="levelFour" >Level 4</button></div>
-</div> -->
 <div class="options">
 <div class="playerOptions"><button id="restartGame">Restart Game</button></div>
 <div class="playerOptions"><button id="hint">Hint</button></div>
@@ -100,12 +93,7 @@ Tic Tac Toe
 <tr>
 
 <td class="cell" id="0">
-  <!-- <section class="card_container">
-  <div class="card" onclick="flip()">
-    <div class="front"></div>
-    <div class="back"></div>
-  </div>
-</section> -->
+
 </td>
 <td class="cell" id="1"></td>
 <td class="cell" id="2"></td>
@@ -122,18 +110,19 @@ Tic Tac Toe
 </tr>
 </table>
 </div>
-<div class="endgame">
-<div class="text"></div>
-<div><button id="spinButton">Try SpinWheel</button></div>
-<button onClick="Replay()">Replay</button>
-</div>
-</div>
 
+</div>
+<div class="endgame">
+  <div class="text"></div>
+  <div><button id="spinButton">Try SpinWheel</button></div>
+  <button id="toreplay" onClick="Replay()">Replay</button>
+  </div>
 <span id="countdown"></span><span id="ss"> second</span><span id="plural">s</span>
 
 <div class='displayleaderboard'>
 <div class="leaderboard">
   <h1>
+    <i class="gg-trophy"></i>
     <svg class="ico-cup">
       <use xlink:href="#cup"></use>
     </svg>
@@ -145,7 +134,7 @@ Tic Tac Toe
         <mark>
           <div class="name">
             </div></mark>
-            <small><div class="score"></div></small>
+            <small><span class="point"></span><span class="score"></span></small>
             </div>
     </li>
     <li>
@@ -153,7 +142,7 @@ Tic Tac Toe
       <mark>
         <div class="name">
           </div></mark>
-          <small><div class="score"></div></small>
+          <small><span class="point"></span><span class="score"></span></small>
           </div>
       
     </li>
@@ -162,7 +151,7 @@ Tic Tac Toe
         <mark>
           <div class="name">
             </div></mark>
-            <small><div class="score"></div></small>
+            <small><span class="point"></span><span class="score"></span></small>
             </div>
     </li>
     <li>
@@ -170,7 +159,7 @@ Tic Tac Toe
         <mark>
           <div class="name">
             </div></mark>
-            <small><div class="score"></div></small>
+            <small><span class="point"></span><span class="score"></span></small>
             </div>
     </li>
     <li>
@@ -178,27 +167,23 @@ Tic Tac Toe
         <mark>
           <div class="name">
             </div></mark>
-            <small><div class="score"></div></small>
+            <small><span class="point"></span><span class="score"></span></small>
             </div>
     </li>
-    <li>
-      <div class="pos6">
-        <mark>
-          <div class="name">
-            </div></mark>
-            <small><div class="score"></div></small>
-            </div>
-    </li>
-    <li>
-      <div class="pos7">
-        <mark>
-          <div class="name">
-            </div></mark>
-            <small><div class="score"></div></small>
-            </div>
-    </li>
+    <li class="pos7">
+      <span class="rank"></span>
+      <mark>
+        
+        <div class="name">
+          </div></mark>
+          <small><span class="point"></span><span class="score"></span></small>
+          </div>
+        </li>
   </ol>
+
 </div>
+<div>
+
 </div>
 </div>
 <div id="SpinCircle">

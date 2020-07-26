@@ -60,19 +60,12 @@ $(function(){
     $('#spinButton').on('click',function(){
         $("#container").css({
             display:'none'
-        });
-      //  $("#spinWheel").load("spinningWheel.html"); 
+        }); 
       $('#SpinCircle').css({
           display:'flex'
       });
        $('body').css({
-//         display: 'flex',
-//         'justify-content':'center',
-//         'align-items': 'center',
-//         'height': '100vh',
             overflow: 'hidden',
-// 'background-image': 'url(/bg1.png)',
-// 'background-size': 'cover'
        });
     });
   });
@@ -102,6 +95,7 @@ $(function(){
                 $('#submitName').css({
                     display:'none'
                 });
+                $('.leaderBoard').css({display:'block'});
                 $('#Player1Name').attr('disabled','true');
                 $('#Player2Name').attr('disabled','true');
             }
@@ -138,7 +132,7 @@ $('#restartGame').css({
 // if Play against computer or Compete mode is selected 
 else{
    computerMode();
-   $('.leaderBoard').css({display:'block'});
+   
 }
 });
 $('.options button').on('click',function(){
@@ -184,13 +178,7 @@ $('.options button').on('click',function(){
 //To handle clicks of levels for AI mode and compete mode
     $('.column input').on('click',function (){
         levelSelected=$(this).attr('id');
-        // $(".row1 input").css({
-        //     'background-color':'white'
-        // });
-        // $(this).css({
-        //     'background-color':'red'
-        // });
-      
+     
         isReplay=false;
         whoWon=player;
        
@@ -486,24 +474,10 @@ function gameOver(gameWon){
 
 //Store the data if compete mode
 function storeWinner(){
-    //winnerName,gameWn    
+       
     var isBest=false;
         var currWinner;
-        // if(gameWn.player==player){
-        //     currWinner={
-        //         Name:Player1Name,
-        //         min:m,
-        //         sec:s,
-        //         millis:ms,
-        //     };
-        // }else{
-        //      currWinner={
-        //         Name:Player2Name,
-        //         min:m,
-        //         sec:s,
-        //         millis:ms,
-        //     };
-        // }
+        
        currWinner={
                 Name:Player1Name,
                 min:m,
@@ -902,6 +876,7 @@ $('#millis').html(milli);
 var cnt=false;
 var absDeg;
 function handleSpin(){
+    $('#container').css({display:'none'});
 if(!cnt){var x=1024;
     var y=9999;
     var deg=Math.floor(Math.random()*(x-y))+y;
@@ -1031,7 +1006,7 @@ myTableDiv.appendChild(table);
 $('#TTT_Board1').css({
     backgroundColor:'white',
    ' border-collapse':'collapse', 
-   'margin': 'auto -5% auto',
+   'margin': 'auto',
   'table-layout': 'fixed',
    'width':'350px', 
 });
@@ -1041,9 +1016,18 @@ $('#TTT_Board1 td').css({
     'width':'60px',
     'font-size':'25px',
     'color':'brown',
-    'text-align':'center',
     'cursor':'pointer'
 });
+var x = window.matchMedia("(max-width: 700px)");
+if (x.matches){
+    $('#TTT_Board1').css({
+       'width':'300px', 
+    });    
+    $(body.keyboard).css({
+        height: 'calc(100% + 500px)'
+    }); 
+}
+
 $('#TTT_Board1 td').addClass('cell');
 $('#TTT_Board1 td').hover(function(){
     $(this).css({
@@ -1069,29 +1053,8 @@ $('#TTT_Board1 td').hover(function(){
       }
     }
   }
-// //countdown timer
 
-// var countdown = setInterval(function(){
-//     challengetime--;
-//     (challengetime == 1) ? document.getElementById("plural").textContent = "" : document.getElementById("plural").textContent = "s";
-//     document.getElementById("countdown").textContent = challengetime;
-//     if (challengetime <= 0) clearInterval(countdown);
-// },1000);
 
-//   //function for leaderboard
-//   function displayLeaderBoard(){
-//     var usersList=[];
-//     var display="display_leaderboard";
-//     fetch(`/${display}`,{method : "get"}).then((response)=>{
-//         return response.json();
-//     }).then((data)=>{
-//         console.log(data);
-//         for(var i=0;i<data.length;i++){
-//             usersList[i]=data[i];            
-//         }
-//     });
-// console.log("userlist"+usersList.length);  
-// }
 var check=[1,7,3,8,6,4,3,77,6];
 check.sort(compare);
 function compare(a, b){
@@ -1119,12 +1082,13 @@ function compare(a, b){
     // if the target of the click isn't the container nor a descendant of the container
     if (!container.is(e.target) && container.has(e.target).length === 0) 
     {   
-       
         container.hide();
+        document.querySelector('#container').style.display='block';
     }
 });
   //function for leaderboard
   function displayLeaderBoard(){
+    document.querySelector('#container').style.display='none';
     var usersList=[];
     var play1score,play1points;
     var display="display_leaderboard";
@@ -1142,26 +1106,44 @@ function compare(a, b){
         }
         document.querySelector('.displayleaderboard').style.display='block';
         usersList.sort(function(a,b){return (b.score-a.score);});
+        for(var i=0;i<data.length;i++){
+          
+            if(usersList[i].Name==Player1Name){
+                index=i+1;
+                break;
+                     }           
+        }
         document.querySelector('.pos1 .name').innerHTML=usersList[0].Name;
-        document.querySelector('.pos1 .score').innerHTML=usersList[0].score+usersList[0].points;
+        document.querySelector('.pos1 .score').innerHTML="Score: "+usersList[0].score;
+        document.querySelector('.pos1 .point').innerHTML="Points: "+usersList[0].points;    
         document.querySelector('.pos2 .name').innerHTML=usersList[1].Name;
-        document.querySelector('.pos2 .score').innerHTML=usersList[1].score;
+        document.querySelector('.pos2 .point').innerHTML="Points: "+usersList[1].points; 
+        document.querySelector('.pos2 .score').innerHTML="Score: "+usersList[1].score;
         document.querySelector('.pos3 .name').innerHTML=usersList[2].Name;
-        document.querySelector('.pos3 .score').innerHTML=usersList[2].score;
+        document.querySelector('.pos3 .point').innerHTML="Points: "+usersList[2].points; 
+        document.querySelector('.pos3 .score').innerHTML="Score: "+usersList[2].score;
         document.querySelector('.pos4 .name').innerHTML=usersList[3].Name;
-        document.querySelector('.pos4 .score').innerHTML=usersList[3].score;
+        document.querySelector('.pos4 .point').innerHTML="Points: "+usersList[3].points; 
+        document.querySelector('.pos4 .score').innerHTML="Score: "+usersList[3].score;
         document.querySelector('.pos5 .name').innerHTML=usersList[4].Name;
-        document.querySelector('.pos5 .score').innerHTML=usersList[4].score;
-        document.querySelector('.pos6 .name').innerHTML=play1score;
-        document.querySelector('.pos6 .score').innerHTML=play1points;
-         document.querySelector('.pos7 .name').innerHTML=usersList[4].Name;
-        document.querySelector('.pos7 .score').innerHTML=usersList[4].score;
-        // usersList.sort(comparep);
-        // document.querySelector('.pos_1 .name').innerHTML=usersList[0].Name;
-        // document.querySelector('.pos_1 .point').innerHTML=usersList[0].points;
-        // document.querySelector('.pos_2 .name').innerHTML=usersList[1].Name;
-        // document.querySelector('.pos_2 .point').innerHTML=usersList[1].points;
-        // document.querySelector('.pos_3 .name').innerHTML=usersList[2].Name;
-        // document.querySelector('.pos_3 .point').innerHTML=usersList[2].points;
+        document.querySelector('.pos5 .point').innerHTML="Points: "+usersList[4].points;
+        document.querySelector('.pos5 .score').innerHTML="Score: "+usersList[4].score;
+         document.querySelector('.pos7 .rank').innerHTML=index;
+         document.querySelector('.pos7 .name').innerHTML="YOU!!";
+         document.querySelector('.pos7 .point').innerHTML="Points: "+play1points; 
+        document.querySelector('.pos7 .score').innerHTML="Score: "+play1score;
+      
     });
   }
+document.body.addEventListener("focus", event => {
+    const target = event.target;
+    switch (target.tagName) {
+        case "INPUT":
+        case "TEXTAREA":
+        case "SELECT":
+            document.body.classList.add("keyboard");
+    }
+}, true); 
+document.body.addEventListener("blur", () => {
+    document.body.classList.remove("keyboard");
+}, true); 
