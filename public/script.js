@@ -61,6 +61,7 @@ $(function(){
         $("#container").css({
             display:'none'
         }); 
+       
       $('#SpinCircle').css({
           display:'flex'
       });
@@ -938,7 +939,6 @@ $(function(){
         
         absDeg=absDeg*-1;
         console.log("deg="+absDeg);
-       
         $('#container').css({
            display:'block'
        });
@@ -1078,13 +1078,13 @@ function compare(a, b){
   $(document).mouseup(function(e) 
 {
     var container = $(".displayleaderboard");
-   
+    var spinContainer= document.querySelector('#SpinCircle');
     // if the target of the click isn't the container nor a descendant of the container
-    if (!container.is(e.target) && container.has(e.target).length === 0) 
-    {   
+    if (!container.is(e.target) && container.has(e.target).length === 0&&spinContainer.style.display!='flex') 
+    {   console.log('called');
         container.hide();
         document.querySelector('#container').style.display='block';
-    }
+    } 
 });
   //function for leaderboard
   function displayLeaderBoard(){
