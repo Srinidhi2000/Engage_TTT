@@ -1081,7 +1081,7 @@ function compare(a, b){
     var spinContainer= document.querySelector('#SpinCircle');
     // if the target of the click isn't the container nor a descendant of the container
     if (!container.is(e.target) && container.has(e.target).length === 0&&spinContainer.style.display!='flex') 
-    {   console.log('called');
+    {  
         container.hide();
         document.querySelector('#container').style.display='block';
     } 
